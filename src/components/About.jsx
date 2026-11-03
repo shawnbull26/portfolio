@@ -1,58 +1,38 @@
-import { person, principles } from '../data/site'
-import { Eyebrow, Reveal, Rule } from './ui'
+import { Check } from 'lucide-react'
+import { about, brand } from '../data/site'
+import { Eyebrow, Reveal } from './ui'
 
 export default function About() {
   return (
-    <section id="about" aria-labelledby="about-title" className="relative py-28 sm:py-40">
+    <section id="about" aria-labelledby="about-title" className="relative py-28 sm:py-36">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
-        <div className="grid gap-16 lg:grid-cols-12">
-          <div className="lg:col-span-3">
+        <div className="grid gap-14 lg:grid-cols-12 lg:items-center">
+          <Reveal className="lg:col-span-5">
+            <Portrait />
+          </Reveal>
+
+          <div className="lg:col-span-6 lg:col-start-7">
             <Reveal>
-              <Eyebrow index="05" className="text-ink-mute">
-                About
-              </Eyebrow>
+              <Eyebrow className="text-fog">About</Eyebrow>
             </Reveal>
-            <Reveal delay={0.2} className="mt-12 hidden lg:block">
-              <Portrait />
+            <Reveal as="h2" id="about-title" delay={0.05} className="display mt-6 text-[clamp(2.6rem,6vw,5rem)]">
+              {about.heading}
             </Reveal>
-          </div>
-
-          <div className="lg:col-span-8">
-            <Reveal
-              as="h2"
-              id="about-title"
-              className="font-serif text-[clamp(2.4rem,5.6vw,4.8rem)] leading-[1.02] tracking-[-0.02em]"
-            >
-              I'm Daeshawn. <span className="text-ink-mute italic">I make good businesses easy to trust.</span>
+            <Reveal delay={0.12} className="mt-8 space-y-5 text-lg leading-relaxed text-fog">
+              {about.paragraphs.map((p) => (
+                <p key={p.slice(0, 20)}>{p}</p>
+              ))}
             </Reveal>
-
-            <Reveal delay={0.15} className="mt-10 grid gap-6 text-lg leading-relaxed text-ink-soft md:grid-cols-2 md:gap-10">
-              <p>
-                I'm a web designer and developer in {person.location}. I care most about the businesses that keep a
-                neighborhood running: the detailer who shows up on a Saturday, the cleaning crew you trust with a key,
-                the contractor everyone's neighbor recommends.
-              </p>
-              <p>
-                They are rarely short on skill. What they're often missing is a website that does that reputation
-                justice. Getting that right, with care and without the agency price tag, is the work I enjoy most.
-              </p>
-              <p className="md:col-span-2">
-                I'm taking on my first client projects now. That means every site gets my full attention, from the first
-                call to well after launch, and you work directly with the person building it.
-              </p>
-            </Reveal>
-
-            <ul className="mt-20 space-y-0">
-              {principles.map((item, i) => (
-                <li key={item.title}>
-                  <Rule className="text-ink" delay={i * 0.1} />
-                  <Reveal delay={0.1 + i * 0.1} y={16} className="grid gap-2 py-7 md:grid-cols-2 md:gap-10">
-                    <h3 className="font-serif text-2xl leading-tight tracking-[-0.01em]">{item.title}</h3>
-                    <p className="leading-relaxed text-ink-mute">{item.text}</p>
-                  </Reveal>
+            <Reveal as="ul" delay={0.2} className="mt-10 space-y-3">
+              {about.promises.map((promise) => (
+                <li key={promise} className="flex items-center gap-3 font-medium">
+                  <span className="grid size-6 place-items-center rounded-full bg-signal text-night">
+                    <Check aria-hidden="true" className="size-3.5" />
+                  </span>
+                  {promise}
                 </li>
               ))}
-            </ul>
+            </Reveal>
           </div>
         </div>
       </div>
@@ -60,35 +40,36 @@ export default function About() {
   )
 }
 
-// Shows person.photo when it's set; until then, a typographic monogram stands in.
+// Shows brand.photo when it's set; until then, a bold monogram card stands in.
 function Portrait() {
-  if (person.photo) {
+  if (brand.photo) {
     return (
       <img
-        src={person.photo}
+        src={brand.photo}
         width="800"
         height="1000"
         loading="lazy"
         decoding="async"
-        alt={`Portrait of ${person.name}`}
-        className="aspect-[4/5] w-full max-w-[15rem] rounded-[1.5rem] object-cover"
+        alt={`Portrait of ${brand.owner}`}
+        className="aspect-[4/5] w-full max-w-md rounded-[2rem] object-cover"
       />
     )
   }
   return (
-    <div className="relative aspect-[4/5] w-full max-w-[15rem] overflow-hidden rounded-[1.5rem] bg-ink text-paper">
+    <div className="@container relative isolate aspect-[4/5] w-full max-w-md overflow-hidden rounded-[2rem] bg-night-raised ring-1 ring-white/8">
+      <div className="grid-lines absolute inset-0 -z-10" />
       <div
         aria-hidden="true"
-        className="breathe absolute -right-1/3 -bottom-1/3 size-[140%] rounded-full bg-[radial-gradient(closest-side,rgba(180,83,47,0.55),transparent)]"
+        className="breathe absolute -right-1/3 -bottom-1/3 -z-10 size-[130%] rounded-full bg-[radial-gradient(closest-side,rgba(255,106,43,0.45),transparent)]"
       />
-      <div className="relative flex h-full flex-col justify-between p-6">
-        <span aria-hidden="true" className="font-serif text-7xl leading-none italic">
-          db
+      <div className="flex h-full flex-col justify-between p-8">
+        <span aria-hidden="true" className="display text-[30cqw] leading-none">
+          Dae<span className="text-signal">.</span>
         </span>
-        <p className="text-xs leading-relaxed text-paper/70">
-          {person.name}
+        <p className="text-sm leading-relaxed text-fog">
+          {brand.owner}
           <br />
-          {person.role}
+          Founder, {brand.name}
         </p>
       </div>
     </div>

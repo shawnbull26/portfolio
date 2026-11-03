@@ -1,55 +1,56 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, m } from 'framer-motion'
 import { ArrowRight, ArrowUp } from 'lucide-react'
-import { person, projectTypes } from '../data/site'
-import { Eyebrow, Reveal, calm } from './ui'
+import { brand, projectTypes } from '../data/site'
+import { Eyebrow, Reveal, Wordmark, calm } from './ui'
 
 const encode = (data) => new URLSearchParams(data).toString()
 
 export default function Contact() {
   return (
-    <div id="contact-zone" className="relative overflow-hidden bg-ink text-paper">
+    <div className="relative overflow-hidden bg-night text-cloud">
       <div
         aria-hidden="true"
-        className="drift-a pointer-events-none absolute -top-1/3 -right-1/4 size-[70vmax] rounded-full bg-[radial-gradient(closest-side,rgba(180,83,47,0.28),transparent)]"
+        className="drift-a pointer-events-none absolute -top-1/3 -right-1/4 size-[70vmax] rounded-full bg-[radial-gradient(closest-side,rgba(255,106,43,0.25),transparent)]"
       />
 
       <div className="relative mx-auto max-w-7xl px-5 pt-28 pb-10 sm:px-8 sm:pt-40 lg:px-12">
         <section id="contact" aria-labelledby="contact-title" className="grid gap-16 lg:grid-cols-12">
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5 lg:pt-6">
             <Reveal>
-              <Eyebrow index="06" className="text-paper/60">
-                Contact
-              </Eyebrow>
+              <Eyebrow className="text-fog">Let’s talk</Eyebrow>
             </Reveal>
             <Reveal
               as="h2"
               id="contact-title"
               delay={0.1}
-              className="mt-10 font-serif text-[clamp(2.6rem,6vw,5.2rem)] leading-[1] tracking-[-0.02em]"
+              className="display mt-6 text-[clamp(2.6rem,6vw,5.2rem)]"
             >
-              Tell me about <span className="text-ember-soft italic">your business.</span>
+              Ready to get <span className="text-signal">found?</span>
             </Reveal>
-            <Reveal delay={0.2} as="p" className="mt-8 max-w-sm text-lg leading-relaxed text-paper/70">
-              A few sentences is plenty. Every message gets a personal reply from me with honest thoughts and clear
-              next steps. No pressure, and no jargon.
+            <Reveal delay={0.2} as="p" className="mt-8 max-w-sm text-lg leading-relaxed text-cloud/70">
+              Tell me a little about your business. A few sentences is plenty. Every message gets a personal reply
+              from me with honest thoughts and clear next steps. No pressure, and no jargon.
             </Reveal>
           </div>
 
-          <Reveal delay={0.25} className="lg:col-span-6 lg:col-start-7">
+          <Reveal delay={0.25} className="rounded-3xl border border-white/8 bg-night-raised p-6 sm:p-10 lg:col-span-7 lg:col-start-6">
             <ContactForm />
           </Reveal>
         </section>
 
-        <footer className="mt-28 flex flex-col gap-6 border-t border-paper/10 pt-8 text-sm text-paper/55 sm:mt-40 sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            © {new Date().getFullYear()} {person.name} · {person.role} · {person.location}
+        <footer className="mt-28 flex flex-col gap-6 border-t border-cloud/10 pt-8 text-sm text-cloud/55 sm:mt-40 sm:flex-row sm:items-center sm:justify-between">
+          <p className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <Wordmark className="text-cloud" />
+            <span>
+              © {new Date().getFullYear()} {brand.owner} · {brand.location}
+            </span>
           </p>
           <div className="flex items-center gap-8">
-            <a href={person.github} target="_blank" rel="noreferrer" className="transition-colors duration-500 hover:text-paper">
+            <a href={brand.github} target="_blank" rel="noreferrer" className="transition-colors duration-500 hover:text-cloud">
               GitHub
             </a>
-            <a href="#top" className="group inline-flex items-center gap-2 transition-colors duration-500 hover:text-paper">
+            <a href="#top" className="group inline-flex items-center gap-2 transition-colors duration-500 hover:text-cloud">
               Back to top
               <ArrowUp
                 aria-hidden="true"
@@ -134,10 +135,10 @@ function ContactForm() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.1, ease: calm }}
           >
-            <p className="font-serif text-5xl leading-tight tracking-[-0.02em]">
-              Thank you. <span className="text-ember-soft italic">I'll be in touch soon.</span>
+            <p className="display text-5xl">
+              Thank you. <span className="text-signal">Talk soon.</span>
             </p>
-            <p className="mt-6 max-w-sm text-paper/70">Your message is in, and you'll hear back from me personally.</p>
+            <p className="mt-6 max-w-sm text-cloud/70">Your message is in, and you'll hear back from me personally.</p>
           </m.div>
         ) : (
           <m.form
@@ -161,16 +162,16 @@ function ContactForm() {
             </p>
 
             <fieldset>
-              <legend className="mb-4 text-sm text-paper/60">I'm interested in</legend>
+              <legend className="mb-4 text-sm text-cloud/60">I'm interested in</legend>
               <input type="hidden" name="project-type" value={type} />
               <div className="flex flex-wrap gap-2.5">
                 {projectTypes.map((option) => (
                   <label
                     key={option}
-                    className={`cursor-pointer rounded-full border px-4 py-2 text-sm transition-colors duration-500 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-ember-soft ${
+                    className={`cursor-pointer rounded-full border px-4 py-2 text-sm transition-colors duration-500 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-signal ${
                       type === option
-                        ? 'border-paper bg-paper text-ink'
-                        : 'border-paper/20 text-paper/80 hover:border-paper/50'
+                        ? 'border-cloud bg-cloud text-night'
+                        : 'border-cloud/20 text-cloud/80 hover:border-cloud/50'
                     }`}
                   >
                     <input
@@ -198,10 +199,10 @@ function ContactForm() {
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="group inline-flex items-center gap-4 rounded-full bg-paper py-2.5 pr-2.5 pl-6 text-[0.95rem] font-medium text-ink transition-colors duration-500 hover:bg-white disabled:opacity-60"
+                className="group inline-flex items-center gap-4 rounded-full bg-signal py-2 pr-2 pl-6 text-[0.95rem] font-semibold text-night transition-colors duration-300 hover:bg-signal-soft disabled:opacity-60"
               >
                 {status === 'sending' ? 'Sending…' : 'Send message'}
-                <span className="relative grid size-9 place-items-center overflow-hidden rounded-full bg-ink/8">
+                <span className="relative grid size-9 place-items-center overflow-hidden rounded-full bg-night/8">
                   <ArrowRight
                     aria-hidden="true"
                     className="size-4 transition-transform duration-700 ease-(--ease-calm) group-hover:translate-x-9"
@@ -213,7 +214,7 @@ function ContactForm() {
                 </span>
               </button>
               {status === 'error' && (
-                <p role="alert" className="text-sm text-ember-soft">
+                <p role="alert" className="text-sm text-signal">
                   That didn't go through. Please try again in a moment.
                 </p>
               )}
@@ -229,8 +230,8 @@ function ContactForm() {
 function Field({ label, name, type = 'text', textarea = false, optional = false, error, ...props }) {
   const id = `field-${name}`
   const errorId = `${id}-error`
-  const base = `peer block w-full resize-none border-0 border-b bg-transparent px-0 pt-1 pb-3 text-lg text-paper transition-colors duration-500 focus:ring-0 focus:outline-none ${
-    error ? 'border-ember-soft/70' : 'border-paper/20 focus:border-paper'
+  const base = `peer block w-full resize-none border-0 border-b bg-transparent px-0 pt-1 pb-3 text-lg text-cloud transition-colors duration-500 focus:ring-0 focus:outline-none ${
+    error ? 'border-signal/70' : 'border-cloud/20 focus:border-cloud'
   }`
   const shared = {
     id,
@@ -244,14 +245,14 @@ function Field({ label, name, type = 'text', textarea = false, optional = false,
   return (
     <div>
       <div className="relative">
-        <label htmlFor={id} className="mb-2 block text-sm text-paper/60">
+        <label htmlFor={id} className="mb-2 block text-sm text-cloud/60">
           {label}
-          {optional && <span className="text-paper/40"> (optional)</span>}
+          {optional && <span className="text-cloud/40"> (optional)</span>}
         </label>
         {textarea ? <textarea rows={3} {...shared} /> : <input type={type} {...shared} />}
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-ember-soft transition-transform duration-700 ease-(--ease-calm) peer-focus:scale-x-100"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-signal transition-transform duration-700 ease-(--ease-calm) peer-focus:scale-x-100"
         />
       </div>
       <AnimatePresence initial={false}>
@@ -259,7 +260,7 @@ function Field({ label, name, type = 'text', textarea = false, optional = false,
           <m.p
             key={error}
             id={errorId}
-            className="mt-2 text-sm text-ember-soft"
+            className="mt-2 text-sm text-signal"
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}

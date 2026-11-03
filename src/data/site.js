@@ -1,8 +1,9 @@
 // Everything a visitor reads lives here, so copy edits never touch the components.
 
-export const person = {
-  name: 'Daeshawn Bullock',
-  role: 'Web design & development',
+export const brand = {
+  name: 'Design by Dae',
+  owner: 'Daeshawn Bullock',
+  tagline: 'Websites for local businesses that don’t have one yet',
   location: 'Northern Virginia',
   github: 'https://github.com/shawnbull26',
   // Drop a portrait in public/ (about 800×1000) and set its path here to replace the monogram card.
@@ -10,138 +11,102 @@ export const person = {
 }
 
 // The public address once deployed. Used for the canonical link and social preview tags.
-export const siteUrl = 'https://daeshawn-bullock.netlify.app'
+export const siteUrl = 'https://designbydae.netlify.app'
 
 export const nav = [
-  { label: 'Work', href: '#work' },
-  { label: 'Approach', href: '#approach' },
+  { label: 'What you get', href: '#included' },
+  { label: 'Samples', href: '#samples' },
   { label: 'Pricing', href: '#pricing' },
-  { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'FAQ', href: '#faq' },
 ]
 
-export const projects = [
+export const heroFacts = ['Live in about a week', 'Founding rates from $697', 'No tech skills needed']
+
+export const reasons = [
+  {
+    title: 'Customers look you up first',
+    text: 'Before they call a plumber, a detailer or a cleaner, most people search. If nothing comes up, they call whoever does.',
+  },
+  {
+    title: 'No website reads as “not sure”',
+    text: 'A clean site tells a stranger you’re established, insured and easy to reach, before you’ve said a word.',
+  },
+  {
+    title: 'Social pages only go so far',
+    text: 'Facebook and Instagram help, but a site you own shows up on Google, explains your services and takes requests around the clock.',
+  },
+]
+
+export const included = [
+  {
+    title: 'Designed around your business',
+    text: 'No cookie-cutter template. A clean, modern look built around what you do and who you serve.',
+  },
+  {
+    title: 'Made for phones first',
+    text: 'Most of your customers will find you on a phone, so every page is built to load fast and read well there.',
+  },
+  {
+    title: 'Easy to call or book',
+    text: 'Click-to-call buttons and a simple request form on every page, so interest turns into a conversation.',
+  },
+  {
+    title: 'Found on Google',
+    text: 'Local search basics set up from day one, and a connection to your Google Business Profile.',
+  },
+  {
+    title: 'Words written for you',
+    text: 'Not a writer? No problem. I help shape the wording from a quick chat about your business.',
+  },
+  {
+    title: 'Looked after afterwards',
+    text: 'Hosting, security and small updates handled for you on the Care Plan, so the site never goes stale.',
+  },
+]
+
+export const samples = [
   {
     id: 'apex',
-    index: '01',
     name: 'Apex Mobile Detailing',
     industry: 'Mobile car detailing',
     url: 'https://apex-mobile-detailing-example.netlify.app',
-    description:
-      'A detailer who comes to your driveway needs a site as polished as the finish they leave on a car. Bold, direct and confident, with nothing standing between a visitor and a booking.',
-    focus:
-      'Every section ends in a way to book. Phones get a sticky call bar, and choosing a service opens the form with it already filled in.',
-    stats: [
-      { value: '98', label: 'Performance' },
-      { value: '100', label: 'Accessibility' },
-      { value: '100', unit: 'KB', label: 'JavaScript, compressed' },
-    ],
+    note: 'Bold and direct, with prices up front and a call button always in reach.',
     images: {
       desktop: '/work/apex-desktop-960.webp',
       desktopLarge: '/work/apex-desktop.webp',
       mobile: '/work/apex-mobile.webp',
     },
-    story: {
-      problem:
-        'Mobile detailing customers are busy, usually on a phone, and want two answers fast: what will it cost, and can you come to me? Most local detailing sites bury both under stock photos and vague "premium service" copy.',
-      decisions: [
-        {
-          title: 'Prices up front',
-          text: 'Every service shows its price by vehicle size, so people feel safe reaching out instead of guessing.',
-        },
-        {
-          title: 'One tap to book',
-          text: 'Book and call buttons in the header, the hero and every closing section, plus a floating call bar on phones.',
-        },
-        {
-          title: 'A real local voice',
-          text: 'Written in the owner\'s own voice, with local details like traffic on 495 and winter road salt, so it reads like a neighbor, not a franchise.',
-        },
-        {
-          title: 'A form that quotes',
-          text: 'It asks only what a detailer needs to quote the job, and says up front that no payment is taken.',
-        },
-      ],
-      next: 'For a real client: photos from actual jobs, online scheduling, and tracking every call tap and form submission.',
-    },
   },
   {
     id: 'lumen',
-    index: '02',
     name: 'Lumen Clean Co.',
-    industry: 'Eco-friendly house cleaning',
+    industry: 'House cleaning',
     url: 'https://lumen-clean-co.netlify.app',
-    description:
-      'Customers hand a cleaning company the key to their home. This brand had to feel calm, safe and accountable from the very first scroll.',
-    focus:
-      'A hero that shows a visit being completed, prices that update as you choose your home size, and reassurance placed exactly where people hesitate.',
-    stats: [
-      { value: '97', label: 'Performance' },
-      { value: '100', label: 'Accessibility' },
-      { value: '0', label: 'Layout shift' },
-    ],
+    note: 'Calm and reassuring, built for a service people let into their homes.',
     images: {
       desktop: '/work/lumen-desktop-960.webp',
       desktopLarge: '/work/lumen-desktop.webp',
       mobile: '/work/lumen-mobile.webp',
-    },
-    story: {
-      problem:
-        'House cleaning is a trust purchase. Before anyone books, they want to know who is coming into their home, what it will really cost, and whether the cleaner will actually show up.',
-      decisions: [
-        {
-          title: 'A hero that explains the service',
-          text: 'Instead of a stock photo, a "today\'s visit" card ticks off its checklist and ends with photo proof. The whole service, understood in seconds.',
-        },
-        {
-          title: 'Honest pricing',
-          text: 'Price ranges by home size for every package, with a toggle that updates them all at once, so visitors can qualify themselves.',
-        },
-        {
-          title: 'Reassurance where people hesitate',
-          text: 'The same cleaner every visit, vetted staff and a free redo guarantee appear exactly where doubts tend to come up.',
-        },
-        {
-          title: 'Motion with a job to do',
-          text: 'Every animation directs attention or confirms an action, and all of it respects reduced-motion settings.',
-        },
-      ],
-      next: 'For a real client: photos of the actual team, booking with live availability, and an instant quote calculator.',
     },
   },
 ]
 
 export const steps = [
   {
-    title: 'Listen',
-    text: 'A relaxed call about your business: who your best customers are, what they ask before they hire you, and what makes you the right choice.',
+    title: 'Quick call',
+    text: 'A relaxed 20-minute chat about your business, your customers and what you want the site to do.',
   },
   {
-    title: 'Shape',
-    text: 'Words and structure come first. I map out what a visitor needs to see, in what order, to trust you and pick up the phone.',
+    title: 'I build it',
+    text: 'I design the site and write the words with you, sharing a live preview as it comes together.',
   },
   {
-    title: 'Build',
-    text: 'I design and hand-build the site, sharing a live preview as it comes together. You give feedback on the real thing, not a sketch.',
+    title: 'You review',
+    text: 'You click around the real thing and tell me what to change. Two rounds of revisions are included.',
   },
   {
-    title: 'Launch',
-    text: 'We go live with forms, search basics and speed all checked. After that, the Care Plan keeps your site secure, backed up and up to date.',
-  },
-]
-
-export const principles = [
-  {
-    title: 'You always know where things stand.',
-    text: 'Clear dates, quick replies, and no disappearing for weeks at a time.',
-  },
-  {
-    title: 'Taste, with a reason behind it.',
-    text: 'Every choice, from a font to a button, is there to make you look trustworthy and easy to hire.',
-  },
-  {
-    title: 'I think like your customer.',
-    text: 'Usually on a phone, often in a hurry, and deciding in seconds whether to call you or the next result.',
+    title: 'You go live',
+    text: 'Your site launches on your own domain, with forms and Google set up, usually 5–10 days after I have your content.',
   },
 ]
 
@@ -150,7 +115,7 @@ export const pricing = {
   founding: {
     label: 'Founding-client rates',
     spots: 'For my first 3 clients',
-    text: "I'm taking on my first three clients at a founding rate. You get the same work at a lower price, and I ask for your honest feedback and, if you're happy, a testimonial.",
+    text: 'I’m taking on my first three clients at a founding rate. You get the same work at a lower price, and I ask for your honest feedback and, if you’re happy, a testimonial.',
   },
   packages: [
     {
@@ -159,7 +124,7 @@ export const pricing = {
       price: '$697',
       regular: '$997',
       tagline: 'Everything most local businesses need to look professional and get more calls.',
-      badge: 'Where most businesses start',
+      badge: 'Most popular',
       features: [
         'Up to 5 pages: Home, Services, About, Contact, plus Gallery or Reviews',
         'Mobile-friendly, fast-loading design built around calls and quote requests',
@@ -196,4 +161,40 @@ export const pricing = {
   terms: '50% to start, 50% when your site is ready to launch. The Care Plan is optional, and most clients keep it. Extra pages, logo refreshes and rush delivery are available as add-ons.',
 }
 
-export const projectTypes = ['Starter Website', 'Growth Website', 'A redesign', 'Not sure yet']
+export const about = {
+  heading: 'Hi, I’m Dae.',
+  paragraphs: [
+    'I’m Daeshawn, a web designer and developer in Northern Virginia. I started Design by Dae for the businesses that keep a neighborhood running but still don’t have a website: the detailer booked solid through word of mouth, the cleaning crew everyone recommends, the contractor with a great reputation and no way to be found online.',
+    'I’m taking on my first clients now, which means you work directly with me from the first call to well after launch. No account managers, no jargon, and no disappearing for weeks.',
+  ],
+  promises: ['Clear prices before we start', 'Replies from me, not a ticket system', 'A site you’re proud to send people to'],
+}
+
+export const faqs = [
+  {
+    q: 'I’m not good with technology. Is that a problem?',
+    a: 'Not at all. That’s exactly who this is for. I handle the setup, the design and the technical side. You tell me about your business and let me know what you think of the preview.',
+  },
+  {
+    q: 'What do you need from me?',
+    a: 'A short call, your logo if you have one, a few photos of your work, and the basics: services, service area, hours and how customers should reach you. No photos or logo yet? We’ll work around it.',
+  },
+  {
+    q: 'Do I need to buy a domain?',
+    a: 'You’ll want your own address, like yourbusiness.com. You can buy it yourself and I’ll connect it, or I can walk you through it. Either way, it stays in your name.',
+  },
+  {
+    q: 'How long does it take?',
+    a: 'Most Starter sites go live 5–10 days after I have your content. The quicker the details come in, the quicker you’re online.',
+  },
+  {
+    q: 'What if I want changes after launch?',
+    a: 'Small fixes are covered for 30 days after launch. After that, the Care Plan includes small monthly updates like new photos, hours or text changes. Bigger additions are quoted up front.',
+  },
+  {
+    q: 'Do I have to sign up for the Care Plan?',
+    a: 'No, it’s optional. Most owners keep it because it means never thinking about hosting, security or updates, but the choice is yours.',
+  },
+]
+
+export const projectTypes = ['Starter Website', 'Growth Website', 'Not sure yet']

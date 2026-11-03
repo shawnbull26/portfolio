@@ -12,7 +12,7 @@ const { render, renderNotFound, siteUrl } = await import(pathToFileURL(join(serv
 
 // Preload the Latin font files used above the fold so the hero paints in the right font.
 const fontPreloads = (await readdir(join(dist, 'assets')))
-  .filter((f) => /^(inter-tight-latin-wght-normal|instrument-serif-latin-400-(normal|italic))-.*\.woff2$/.test(f))
+  .filter((f) => /^(inter-tight-latin-wght-normal|archivo-latin-wdth-normal)-.*\.woff2$/.test(f))
   .map((f) => `<link rel="preload" href="/assets/${f}" as="font" type="font/woff2" crossorigin />`)
   .join('\n    ')
 
@@ -22,7 +22,7 @@ const socialTags = [
   `<meta property="og:image" content="${siteUrl}/og-image.jpg" />`,
   '<meta property="og:image:width" content="1200" />',
   '<meta property="og:image:height" content="630" />',
-  '<meta property="og:image:alt" content="Daeshawn Bullock: Look as good online as you are in person." />',
+  '<meta property="og:image:alt" content="Design by Dae: No website yet? Let’s get you found." />',
   '<meta name="twitter:card" content="summary_large_image" />',
 ].join('\n    ')
 
@@ -39,7 +39,7 @@ console.log('prerendered index.html')
 
 // The 404 page drops the Netlify form copy and is kept out of search results.
 const notFound = template
-  .replace(/<title>.*?<\/title>/, '<title>Page not found | Daeshawn Bullock</title>\n    <meta name="robots" content="noindex" />')
+  .replace(/<title>.*?<\/title>/, '<title>Page not found | Design by Dae</title>\n    <meta name="robots" content="noindex" />')
   .replace(/<form name="project"[\s\S]*?<\/form>/, '')
   .replace('<div id="root"></div>', `<div id="root" data-page="404">${renderNotFound()}</div>`)
 await writeFile(join(dist, '404.html'), notFound)

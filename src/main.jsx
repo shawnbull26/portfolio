@@ -3,8 +3,7 @@ import { createRoot, hydrateRoot } from 'react-dom/client'
 import App from './App'
 import NotFound from './components/NotFound'
 import '@fontsource-variable/inter-tight/wght.css'
-import '@fontsource/instrument-serif/400.css'
-import '@fontsource/instrument-serif/400-italic.css'
+import '@fontsource-variable/archivo/wdth.css'
 import './index.css'
 
 const root = document.getElementById('root')

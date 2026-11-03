@@ -1,6 +1,6 @@
-# Daeshawn Bullock: Portfolio
+# Design by Dae
 
-A single-page portfolio for a freelance web designer and developer who builds websites for local service businesses. Built with React, Vite, Tailwind CSS 4 and Framer Motion, prerendered to static HTML and set up for Netlify.
+The marketing site for Design by Dae, a web design business that builds first websites for local businesses that don't have one yet. Built with React, Vite, Tailwind CSS 4 and Framer Motion, prerendered to static HTML and set up for Netlify.
 
 ## Develop
 
@@ -13,9 +13,10 @@ npm run dev
 
 ## Where things live
 
-- `src/data/site.js`: all copy, case studies, pricing, process steps and principles, plus `siteUrl` (canonical and social tags) and `person.photo` (set a path to replace the About monogram).
-- `src/components/`: one file per section (Hero, Intro, Work, Approach, About, Contact) plus `ui.jsx` for shared motion primitives.
-- `public/work/`: case-study screenshots (WebP).
+- `src/data/site.js`: all copy (brand, reasons, what's included, sample sites, process, pricing, about, FAQ), plus `siteUrl` (canonical and social tags) and `brand.photo` (set a path to replace the About monogram).
+- `src/components/`: one file per section (Hero, Why, Included, Samples, Process, Pricing, About, Faq, Contact) plus `ui.jsx` for shared pieces (wordmark, buttons, section headings, reveals).
+- Brand colors and fonts live in `src/index.css` (`@theme`): near-black `night`, off-white `cloud`, `signal` orange; Archivo for headlines (the `display` utility), Inter Tight for body text.
+- `public/work/`: sample-site screenshots (WebP).
 - `scripts/og-image.html`: source for `public/og-image.jpg`; the file's comment has the command to regenerate it.
 
 ## Motion
