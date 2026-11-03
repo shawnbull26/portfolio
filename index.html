@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daeshawn Bullock | Websites for Local Service Businesses</title>
+    <meta
+      name="description"
+      content="I design and build clear, fast, quietly premium websites for local service businesses, so customers trust you at a glance and pick up the phone."
+    />
+    <meta name="theme-color" content="#f4f0e8" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Daeshawn Bullock | Websites for Local Service Businesses" />
+    <meta
+      property="og:description"
+      content="Clear, fast, quietly premium websites that help local businesses look as good online as they are in person."
+    />
+    <script>
+      // Arriving mid-page (a #section link or a reload) skips the hero's intro delays.
+      try {
+        var nav = performance.getEntriesByType('navigation')[0]
+        if (location.hash || (nav && nav.type !== 'navigate')) document.documentElement.classList.add('skip-intro')
+      } catch (e) {}
+    </script>
+    <noscript>
+      <!-- Scroll-triggered sections start hidden for their entrance; show them when JS is off. -->
+      <style>[style*="opacity:0"]{opacity:1!important;transform:none!important}</style>
+    </noscript>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <!--
+      Static copy of the contact form so Netlify's build bot can detect it.
+      Field names must match src/components/Contact.jsx exactly.
+    -->
+    <form name="project" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="business" />
+      <input type="text" name="project-type" />
+      <textarea name="message"></textarea>
+      <input name="bot-field" />
+    </form>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

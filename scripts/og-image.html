@@ -1,0 +1,39 @@
+<!doctype html>
+<!--
+  Source for public/og-image.jpg (1200×630). Regenerate on macOS with:
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --hide-scrollbars \
+    --window-size=1200,630 --screenshot=og.png scripts/og-image.html
+  then: sips -s format jpeg -s formatOptions 88 og.png --out public/og-image.jpg
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face { font-family: 'Instrument Serif'; src: url(../node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2); }
+      @font-face { font-family: 'Instrument Serif'; font-style: italic; src: url(../node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2); }
+      @font-face { font-family: 'Inter Tight'; font-weight: 100 900; src: url(../node_modules/@fontsource-variable/inter-tight/files/inter-tight-latin-wght-normal.woff2); }
+      html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+      body {
+        position: relative; box-sizing: border-box; padding: 64px 80px;
+        display: flex; flex-direction: column; justify-content: space-between;
+        background: #f4f0e8; color: #1b1915; font-family: 'Inter Tight', sans-serif;
+      }
+      .glow-a { position: absolute; top: -260px; right: -220px; width: 820px; height: 820px; border-radius: 50%;
+        background: radial-gradient(closest-side, #ecc9b3, transparent); opacity: .8; }
+      .glow-b { position: absolute; bottom: -420px; left: -260px; width: 760px; height: 760px; border-radius: 50%;
+        background: radial-gradient(closest-side, #dcd2bf, transparent); }
+      .row { position: relative; display: flex; justify-content: space-between; align-items: center; }
+      .name { font-family: 'Instrument Serif'; font-size: 34px; }
+      .label { font-size: 15px; letter-spacing: .2em; text-transform: uppercase; color: #6b655b; }
+      h1 { position: relative; margin: 0; font-family: 'Instrument Serif'; font-weight: 400; font-size: 118px; line-height: .95; letter-spacing: -.025em; }
+      em { color: #b4532f; }
+      .foot { border-top: 1px solid rgba(27,25,21,.15); padding-top: 22px; font-size: 18px; color: #4f4a42; }
+    </style>
+  </head>
+  <body>
+    <div class="glow-a"></div><div class="glow-b"></div>
+    <div class="row"><span class="name">Daeshawn Bullock</span><span class="label">Websites for local service businesses</span></div>
+    <h1>Look as good online<br />as you are <em>in person.</em></h1>
+    <div class="row foot"><span>Clear, fast websites that turn visitors into calls.</span><span>Northern Virginia</span></div>
+  </body>
+</html>

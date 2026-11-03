@@ -1,0 +1,194 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter Tight Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
+
+  /* The portfolio itself: warm paper, deep ink, one quiet ember accent. */
+  --color-paper: #f4f0e8;
+  --color-paper-deep: #ebe5d9;
+  --color-ink: #1b1915;
+  --color-ink-soft: #4f4a42;
+  --color-ink-mute: #6b655b;
+  --color-ember: #b4532f;
+  --color-ember-deep: #93401f;
+  --color-ember-soft: #ecc9b3;
+  --color-sand: #dcd2bf;
+
+  /* Case-study palettes, borrowed from each project's own design system. */
+  --color-apex-950: #0b2219;
+  --color-apex-900: #0f2a1f;
+  --color-apex-700: #2e5e48;
+  --color-apex-300: #b9ccc1;
+  --color-apex-lime: #c8ec7a;
+  --color-lumen-cream: #fbfaf5;
+  --color-lumen-leaf: #0f5c45;
+  --color-lumen-ink: #15181c;
+  --color-lumen-coral: #ff9a80;
+  --color-lumen-lime: #dcf79d;
+
+  --ease-calm: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  section[id] {
+    scroll-margin-top: 4.5rem;
+  }
+  ::selection {
+    @apply bg-ember-soft text-ink;
+  }
+  :focus-visible {
+    @apply rounded-sm outline-2 outline-offset-4 outline-ember;
+  }
+}
+
+/* A barely-there film grain over the whole page, so flat color feels like paper. */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/*
+  Above-the-fold entrances run in CSS so the prerendered hero animates (and is
+  readable) before JavaScript loads. Set --d on an element to delay it.
+*/
+@keyframes line-up {
+  from {
+    transform: translateY(108%);
+  }
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes draw-x {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-7%, 5%, 0) scale(1.1);
+  }
+}
+@keyframes drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+  50% {
+    transform: translate3d(8%, -6%, 0) scale(0.95);
+  }
+}
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 0.8;
+  }
+}
+@keyframes scroll-cue {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+/* Each headline line rises out of its own mask. Padding keeps italics and descenders unclipped. */
+.line-mask {
+  display: block;
+  overflow: hidden;
+  padding: 0 0.12em 0.1em 0;
+  margin-bottom: -0.1em;
+}
+.line-mask > span {
+  display: block;
+  animation: line-up 1.5s var(--ease-calm) var(--d, 0s) both;
+}
+.anim-fade-up {
+  animation: fade-up 1.3s var(--ease-calm) var(--d, 0s) both;
+}
+.anim-fade-in {
+  animation: fade-in 1.6s ease-out var(--d, 0s) both;
+}
+.anim-draw-x {
+  transform-origin: left;
+  animation: draw-x 1.8s var(--ease-calm) var(--d, 0s) both;
+}
+.drift-a {
+  animation: drift-a 26s ease-in-out infinite;
+}
+.drift-b {
+  animation: drift-b 32s ease-in-out infinite;
+}
+.breathe {
+  animation: breathe 9s ease-in-out infinite;
+}
+.scroll-cue {
+  animation: scroll-cue 2.8s var(--ease-calm) 2s infinite both;
+}
+
+.skip-intro header {
+  --d: 0s !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
