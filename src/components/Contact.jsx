@@ -2,41 +2,37 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, m } from 'framer-motion'
 import { ArrowRight, ArrowUp, CalendarDays, Mail, Phone } from 'lucide-react'
 import { brand, projectTypes } from '../data/site'
-import { Eyebrow, Reveal, Squiggle, Sticker, Wordmark, calm } from './ui'
+import { Label, Note, Reveal, Wordmark, calm } from './ui'
 
 const encode = (data) => new URLSearchParams(data).toString()
 
 export default function Contact() {
   return (
     <>
-      <div className="relative overflow-hidden bg-tangerine text-ink">
-        <Squiggle
-          className="absolute -right-24 -bottom-28 w-[30rem] opacity-90"
-          color="var(--color-sunshine)"
-          d="M20 380 C 60 250, 200 260, 210 170 C 220 90, 110 80, 110 160 C 110 250, 260 270, 380 200"
-        />
+      <div className="relative overflow-hidden bg-navy text-paper">
+        <div aria-hidden="true" className="blueprint-dark absolute inset-0" />
         <div className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32 lg:px-10">
           <section id="contact" aria-labelledby="contact-title" className="grid gap-14 lg:grid-cols-12">
             <div className="relative lg:col-span-5 lg:pt-4">
               <Reveal>
-                <Eyebrow className="text-ink/75">Let’s talk</Eyebrow>
+                <Label className="text-pencil-light">Let’s talk</Label>
               </Reveal>
-              <Reveal as="h2" id="contact-title" delay={0.1} className="display mt-5 text-[clamp(3.6rem,9vw,7.5rem)]">
-                Ready to get <span className="text-white">found?</span>
+              <Reveal as="h2" id="contact-title" delay={0.1} className="display mt-5 text-[clamp(3rem,7vw,5.6rem)]">
+                Ready to get <span className="text-marigold">found?</span>
               </Reveal>
-              <Reveal delay={0.2} as="p" className="mt-8 max-w-sm text-lg leading-relaxed text-ink/80">
+              <Reveal delay={0.2} as="p" className="mt-7 max-w-sm text-lg leading-relaxed text-paper/75">
                 Tell me a little about your business. A few sentences is plenty. Every message gets a personal reply
-                from me with honest thoughts and clear next steps. No pressure, and no jargon.
+                from me with honest thoughts, a clear quote and next steps. No pressure, and no jargon.
               </Reveal>
               <ContactOptions />
-              <Sticker tone="ink" rotate={-6} delay={0.4} className="mt-10">
-                Usually live in about a week
-              </Sticker>
+              <Note arrow="right" rotate={-4} delay={0.5} showFrom="lg" color="text-marigold-soft" className="mt-10">
+                takes about 2 minutes
+              </Note>
             </div>
 
             <Reveal
               delay={0.25}
-              className="rounded-[2.25rem] bg-cream p-6 shadow-[0_40px_80px_-40px_rgb(23_19_15/0.6)] sm:p-10 lg:col-span-7 lg:col-start-6"
+              className="rounded-3xl bg-paper p-6 text-navy shadow-[0_40px_80px_-40px_rgb(0_0_0/0.6)] sm:p-10 lg:col-span-7 lg:col-start-6"
             >
               <ContactForm />
             </Reveal>
@@ -44,19 +40,19 @@ export default function Contact() {
         </div>
       </div>
 
-      <footer className="bg-ink text-cream/70">
+      <footer className="bg-navy-deep text-paper/70">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-10 text-sm sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
           <p className="flex flex-wrap items-center gap-x-4 gap-y-2">
-            <Wordmark mono className="text-cream" />
+            <Wordmark inverted className="text-paper" />
             <span>
               © {new Date().getFullYear()} {brand.owner} · {brand.location}
             </span>
           </p>
           <div className="flex items-center gap-8">
-            <a href="/privacy/" className="transition-colors duration-300 hover:text-cream">
+            <a href="/privacy/" className="transition-colors duration-300 hover:text-paper">
               Privacy
             </a>
-            <a href="#top" className="group inline-flex items-center gap-2 transition-colors duration-300 hover:text-cream">
+            <a href="#top" className="group inline-flex items-center gap-2 transition-colors duration-300 hover:text-paper">
               Back to top
               <ArrowUp
                 aria-hidden="true"
@@ -87,7 +83,7 @@ function ContactOptions() {
             {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
             className="group inline-flex items-center gap-3 font-semibold"
           >
-            <span className="grid size-10 place-items-center rounded-full bg-ink text-cream transition-transform duration-300 ease-(--ease-pop) group-hover:scale-110">
+            <span className="grid size-10 place-items-center rounded-full bg-marigold text-navy transition-transform duration-300 ease-(--ease-pop) group-hover:scale-110">
               <Icon aria-hidden="true" className="size-4" />
             </span>
             {label}
@@ -170,9 +166,9 @@ function ContactForm() {
             transition={{ duration: 1.1, ease: calm }}
           >
             <p className="display text-6xl">
-              Thank you. <span className="text-tangerine-deep">Talk soon.</span>
+              Thank you. <span className="marker">Talk soon.</span>
             </p>
-            <p className="mt-6 max-w-sm text-ink-soft">Your message is in, and you'll hear back from me personally.</p>
+            <p className="mt-6 max-w-sm text-slate">Your message is in, and you'll hear back from me personally.</p>
           </m.div>
         ) : (
           <m.form
@@ -202,10 +198,10 @@ function ContactForm() {
                 {projectTypes.map((option) => (
                   <label
                     key={option}
-                    className={`cursor-pointer rounded-full border px-4 py-2 text-sm transition-colors duration-500 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-ink ${
+                    className={`cursor-pointer rounded-full border px-4 py-2 text-sm transition-colors duration-500 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-pencil ${
                       type === option
-                        ? 'border-ink bg-ink font-semibold text-cream'
-                        : 'border-ink/15 bg-white hover:border-ink/40'
+                        ? 'border-navy bg-navy font-semibold text-paper'
+                        : 'border-navy/20 bg-paper-light hover:border-navy/50'
                     }`}
                   >
                     <input
@@ -233,10 +229,10 @@ function ContactForm() {
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="group inline-flex items-center gap-3 rounded-full bg-ink py-1.5 pr-1.5 pl-6 text-[0.95rem] font-semibold text-cream transition-colors duration-300 hover:bg-[#2b241d] disabled:opacity-60"
+                className="group inline-flex items-center gap-3 rounded-full bg-marigold py-1.5 pr-1.5 pl-6 text-[0.95rem] font-semibold text-navy shadow-[0_8px_20px_-10px_rgb(245_183_10/0.8)] transition-colors duration-300 hover:bg-marigold-soft disabled:opacity-60"
               >
                 {status === 'sending' ? 'Sending…' : 'Send message'}
-                <span className="relative grid size-9 place-items-center overflow-hidden rounded-full bg-tangerine text-ink">
+                <span className="relative grid size-9 place-items-center overflow-hidden rounded-full bg-navy text-paper">
                   <ArrowRight
                     aria-hidden="true"
                     className="size-4 transition-transform duration-700 ease-(--ease-calm) group-hover:translate-x-9"
@@ -248,7 +244,7 @@ function ContactForm() {
                 </span>
               </button>
               {status === 'error' && (
-                <p role="alert" className="text-sm font-medium text-[#a32c06]">
+                <p role="alert" className="text-sm font-medium text-[#b42318]">
                   That didn't go through. Please try again in a moment.
                 </p>
               )}
@@ -260,12 +256,12 @@ function ContactForm() {
   )
 }
 
-// Soft rounded fields that turn white with an ink ring on focus; errors fade in beneath.
+// Rounded fields with a pencil-blue border on focus; errors fade in beneath.
 function Field({ label, name, type = 'text', textarea = false, optional = false, error, ...props }) {
   const id = `field-${name}`
   const errorId = `${id}-error`
-  const base = `block w-full resize-none rounded-2xl border-2 bg-blush px-4 py-3 text-base text-ink transition-colors duration-300 focus:bg-white focus:outline-none ${
-    error ? 'border-[#a32c06]/60' : 'border-transparent focus:border-ink'
+  const base = `block w-full resize-none rounded-xl border-[1.5px] bg-paper-light px-4 py-3 text-base text-navy transition-colors duration-300 focus:bg-white focus:outline-none ${
+    error ? 'border-[#b42318]/60' : 'border-navy/15 focus:border-pencil'
   }`
   const shared = {
     id,
@@ -280,7 +276,7 @@ function Field({ label, name, type = 'text', textarea = false, optional = false,
     <div>
       <label htmlFor={id} className="mb-2 block text-sm font-semibold">
         {label}
-        {optional && <span className="font-normal text-ink-soft"> (optional)</span>}
+        {optional && <span className="font-normal text-slate"> (optional)</span>}
       </label>
       {textarea ? <textarea rows={4} {...shared} /> : <input type={type} {...shared} />}
       <AnimatePresence initial={false}>
@@ -288,7 +284,7 @@ function Field({ label, name, type = 'text', textarea = false, optional = false,
           <m.p
             key={error}
             id={errorId}
-            className="mt-2 text-sm font-medium text-[#a32c06]"
+            className="mt-2 text-sm font-medium text-[#b42318]"
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}

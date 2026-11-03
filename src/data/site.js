@@ -24,20 +24,33 @@ export const nav = [
   { label: 'FAQ', href: '#faq' },
 ]
 
-export const heroFacts = ['Live in about a week', 'Founding rates from $697', 'No tech skills needed']
+export const heroFacts = ['Live in about a week', 'From $697', 'You own it', 'No tech talk']
 
-export const reasons = [
+// The hero's typed word cycles through these.
+export const heroTrades = ['detailing', 'cleaning', 'landscaping', 'barber', 'painting', 'plumbing', 'local']
+
+// "Where are you starting from?" Each answer preselects an option in the contact form.
+export const startingPoints = [
   {
-    title: 'Customers look you up first',
-    text: 'Before they call a plumber, a detailer or a cleaner, most people search. If nothing comes up, they call whoever does.',
+    id: 'none',
+    label: 'No website at all.',
+    note: 'where most owners start',
+    text: 'Perfect. We start from a blank page: your services, your area and how customers reach you. Most Starter sites are live in about a week.',
+    choice: 'Starter Website',
   },
   {
-    title: 'No website reads as “not sure”',
-    text: 'A clean site tells a stranger you’re established, insured and easy to reach, before you’ve said a word.',
+    id: 'social',
+    label: 'Just a Facebook or Instagram page.',
+    note: 'a great head start',
+    text: 'Your page already has photos and reviews. I’ll turn them into a real site that shows up on Google, and link the two so they work together.',
+    choice: 'Starter Website',
   },
   {
-    title: 'Social pages only go so far',
-    text: 'Facebook and Instagram help, but a site you own shows up on Google, explains your services and takes requests around the clock.',
+    id: 'old',
+    label: 'An old site I’m not proud of.',
+    note: 'we can fix that',
+    text: 'We keep what works, like your domain and any search ranking, and rebuild the rest so it looks like the business you are today.',
+    choice: 'A redesign',
   },
 ]
 
@@ -226,4 +239,4 @@ export const faqs = [
 // Example: { quote: 'Dae made the whole thing easy…', name: 'Maria L.', business: 'Bright Paws Grooming' }
 export const testimonials = []
 
-export const projectTypes = ['Starter Website', 'Growth Website', 'Not sure yet']
+export const projectTypes = ['Starter Website', 'Growth Website', 'A redesign', 'Not sure yet']

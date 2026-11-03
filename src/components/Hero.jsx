@@ -1,237 +1,261 @@
-import { useState } from 'react'
-import { Pause, Play, Store } from 'lucide-react'
-import { samples, spotsText } from '../data/site'
-import { Button } from './ui'
-
-const industries = [
-  'Detailers',
-  'House cleaners',
-  'Landscapers',
-  'Barbers',
-  'Plumbers',
-  'Painters',
-  'Contractors',
-  'Pressure washers',
-  'Pet groomers',
-  'Movers',
-]
+import { useEffect, useState } from 'react'
+import { Check } from 'lucide-react'
+import { heroFacts, heroTrades, spotsText } from '../data/site'
+import { Button, Label } from './ui'
 
 // Hero entrances are CSS (see index.css) so the prerendered page animates before JS arrives.
 export default function Hero() {
   return (
-    <>
-      <section id="top" className="relative overflow-hidden bg-blush pt-28 sm:pt-32">
-        <Loops />
+    <section id="top" className="relative overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28">
+      <div aria-hidden="true" className="blueprint fade-edges absolute inset-0" />
 
-        <div className="relative mx-auto max-w-7xl px-5 text-center sm:px-8">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-12 lg:gap-8 lg:px-10">
+        <div className="lg:col-span-6">
           <p
-            className="anim-fade-up mx-auto inline-flex items-center gap-2.5 rounded-full bg-white px-4 py-2 text-xs font-semibold shadow-[0_1px_0_rgb(23_19_15/0.06)]"
-            style={{ '--d': '0.1s' }}
+            className="anim-fade-up inline-flex items-center gap-2.5 rounded-full border border-navy/15 bg-paper-light px-3.5 py-1.5 text-xs font-semibold"
+            style={{ '--d': '0.05s' }}
           >
             <span aria-hidden="true" className="relative flex size-2">
-              <span className="ping absolute inset-0 rounded-full bg-tangerine" />
-              <span className="relative size-2 rounded-full bg-tangerine" />
+              <span className="ping absolute inset-0 rounded-full bg-marigold" />
+              <span className="relative size-2 rounded-full bg-marigold" />
             </span>
             Founding-client rates · {spotsText}
           </p>
 
-          <div className="relative mx-auto mt-8 max-w-6xl">
-            <h1 className="display text-[clamp(3.6rem,10.5vw,9rem)] text-tangerine-deep">
-              <span className="line-mask">
-                <span style={{ '--d': '0.05s' }}>No website yet?</span>
-              </span>
-              <span className="line-mask">
-                <span style={{ '--d': '0.15s' }}>Let’s get you</span>
-              </span>
-              <span className="line-mask">
-                <span className="text-ink" style={{ '--d': '0.25s' }}>
-                  found.
-                </span>
-              </span>
-            </h1>
-
-            {/* Decorative tags: the same facts are repeated in the copy below for screen readers. */}
-            <div aria-hidden="true" className="hidden sm:block">
-              <span
-                className="anim-pop sticker absolute top-[-7%] left-[2%] rotate-[-9deg] bg-ink text-cream sm:left-[6%]"
-                style={{ '--d': '0.7s' }}
-              >
-                For local businesses
-              </span>
-              <span
-                className="anim-pop sticker absolute right-[0%] bottom-[12%] rotate-[7deg] bg-sky sm:right-[6%]"
-                style={{ '--d': '0.85s' }}
-              >
-                Live in about a week
-              </span>
-              <span
-                className="anim-pop sticker absolute bottom-[12%] left-[6%] hidden rotate-[5deg] bg-sunshine sm:inline-flex"
-                style={{ '--d': '1s' }}
-              >
-                No tech talk, promise
-              </span>
-              <span
-                className="anim-pop sticker absolute top-[-6%] right-[8%] hidden rotate-[-5deg] bg-bubblegum sm:inline-flex"
-                style={{ '--d': '1.1s' }}
-              >
-                From $697
-              </span>
-            </div>
+          <div className="anim-fade-up mt-8" style={{ '--d': '0.1s' }}>
+            <Label className="text-pencil">Web design for local businesses</Label>
           </div>
 
-          <div aria-hidden="true" className="mt-7 flex flex-wrap justify-center gap-2 sm:hidden">
-            <span className="anim-pop sticker rotate-[-4deg] bg-ink text-cream" style={{ '--d': '0.6s' }}>
-              For local businesses
+          <h1 className="display mt-5 text-[clamp(2.9rem,6.4vw,5.6rem)]">
+            <span className="line-mask">
+              <span style={{ '--d': '0.1s' }}>Let’s put your</span>
             </span>
-            <span className="anim-pop sticker rotate-[3deg] bg-sky" style={{ '--d': '0.7s' }}>
-              Live in about a week
+            <span className="line-mask">
+              <span style={{ '--d': '0.2s' }}>
+                <span className="sr-only">local</span>
+                <Typed words={heroTrades} />
+              </span>
             </span>
-            <span className="anim-pop sticker rotate-[-2deg] bg-sunshine" style={{ '--d': '0.8s' }}>
-              From $697
+            <span className="line-mask">
+              <span style={{ '--d': '0.3s' }}>
+                business <span className="marker">online.</span>
+              </span>
             </span>
-          </div>
+          </h1>
 
-          <p
-            className="anim-fade-up mx-auto mt-10 max-w-xl text-lg leading-relaxed text-ink-soft sm:text-xl"
-            style={{ '--d': '0.5s' }}
-          >
-            Design by Dae builds bright, friendly websites for local businesses that don’t have one, so customers can
-            find you on Google, trust you at a glance, and call. Live in about a week, from $697, no tech talk.
+          <p className="anim-fade-up mt-7 max-w-lg text-lg leading-relaxed text-slate" style={{ '--d': '0.45s' }}>
+            I design and build websites for local businesses that don’t have one yet, so customers can find you on
+            Google, trust you at a glance, and pick up the phone.
           </p>
 
-          <div
-            className="anim-fade-up mt-9 flex flex-wrap items-center justify-center gap-3"
-            style={{ '--d': '0.6s' }}
-          >
-            <Button href="#contact">Let’s talk</Button>
-            <Button href="#samples" variant="outline">
-              See sample sites
+          <div className="anim-fade-up mt-9 flex flex-wrap items-center gap-3" style={{ '--d': '0.55s' }}>
+            <Button href="#contact">Get a free quote</Button>
+            <Button href="#process" variant="outline">
+              How it works
             </Button>
           </div>
+
+          <ul
+            className="anim-fade-up mt-9 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[0.78rem] font-medium text-slate"
+            style={{ '--d': '0.65s' }}
+          >
+            {heroFacts.map((fact) => (
+              <li key={fact} className="flex items-center gap-1.5">
+                <Check aria-hidden="true" className="size-3.5 text-pencil" strokeWidth={3} />
+                {fact}
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <Collage />
-      </section>
-
-      <Ribbon />
-    </>
+        <div className="relative lg:col-span-6">
+          <Blueprint />
+        </div>
+      </div>
+    </section>
   )
 }
 
-// Three tilted cards peeking up from the bottom of the hero: two sample sites and a spot for "yours".
-function Collage() {
-  const [apex, lumen] = samples
-  return (
-    <div aria-hidden="true" className="relative mx-auto mt-16 h-[15rem] max-w-5xl px-5 sm:mt-20 sm:h-[22rem]">
-      <div
-        className="anim-fade-up absolute bottom-[-2.5rem] left-[2%] w-[46%] rotate-[-7deg] overflow-hidden rounded-2xl border-4 border-white bg-white shadow-[0_30px_60px_-30px_rgb(23_19_15/0.5)] sm:left-[4%] sm:w-[38%]"
-        style={{ '--d': '0.75s' }}
-      >
-        <img
-          src={apex.images.desktopSmall}
-          width="640"
-          height="400"
-          alt=""
-          decoding="async"
-          className="block h-auto w-full"
-        />
-      </div>
+// Types and deletes each word in turn, like someone filling in the blank. Starts on the last word
+// ("local") so the prerendered page and no-JS visitors read a complete sentence.
+function Typed({ words }) {
+  const [index, setIndex] = useState(words.length - 1)
+  const [text, setText] = useState(words[words.length - 1])
+  const [deleting, setDeleting] = useState(false)
 
-      <div
-        className="anim-fade-up absolute bottom-[-1rem] left-1/2 z-10 flex aspect-[4/3] w-[44%] -translate-x-1/2 rotate-[2deg] flex-col justify-between rounded-2xl border-4 border-dashed border-ink/25 bg-sunshine p-4 shadow-[0_30px_60px_-30px_rgb(23_19_15/0.5)] sm:w-[32%] sm:p-6"
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const word = words[index]
+    let delay = deleting ? 45 : 85
+    if (!deleting && text === word) delay = 1800
+    if (deleting && text === '') delay = 250
+    const t = setTimeout(() => {
+      if (!deleting && text === word) setDeleting(true)
+      else if (deleting && text === '') {
+        setDeleting(false)
+        setIndex((i) => (i + 1) % words.length)
+      } else setText(deleting ? word.slice(0, text.length - 1) : word.slice(0, text.length + 1))
+    }, delay)
+    return () => clearTimeout(t)
+  }, [text, deleting, index, words])
+
+  // A fixed width (the longest word) keeps the headline from reflowing as letters change.
+  const width = `${Math.max(...words.map((w) => w.length)) + 1}ch`
+  return (
+    <span
+      aria-hidden="true"
+      className="inline-block font-mono font-medium tracking-[-0.06em] text-pencil"
+      style={{ minWidth: width }}
+    >
+      {text}
+      <span className="caret ml-0.5 inline-block h-[0.8em] w-[0.08em] translate-y-[0.08em] bg-pencil" />
+    </span>
+  )
+}
+
+// A line drawing of the visitor's future website, with handwritten notes on what each part does for them.
+function Blueprint() {
+  const draw = (d) => ({ pathLength: 1, className: 'anim-draw', style: { '--d': `${d * 0.5}s` } })
+  const fill = (d) => ({ className: 'anim-fade-in', style: { '--d': `${d * 0.5}s` } })
+  const sans = 'Inter Tight Variable, sans-serif'
+  return (
+    <div className="relative mx-auto max-w-xl pb-10 lg:pb-0">
+      <p className="label mb-3 text-pencil/80" aria-hidden="true">
+        Fig. 01 · Your website, drawn up
+      </p>
+      <svg
+        viewBox="0 0 560 420"
+        fill="none"
+        role="img"
+        aria-label="A sketch of a small-business website: a header with a big call button, a headline, photos of your work, customer reviews and three services."
+        className="w-full overflow-visible drop-shadow-[0_30px_40px_rgb(18_48_107/0.12)]"
+      >
+        <rect x="10" y="10" width="540" height="400" rx="16" fill="#fbfaf6" {...fill(0.2)} />
+        <rect x="10" y="10" width="540" height="400" rx="16" stroke="#12306b" strokeWidth="2" {...draw(0.2)} />
+        <path d="M10 46 H550" stroke="#12306b" strokeWidth="1.5" {...draw(0.4)} />
+        {[32, 48, 64].map((x) => (
+          <circle key={x} cx={x} cy="28" r="4.5" stroke="#12306b" strokeWidth="1.5" {...draw(0.5)} />
+        ))}
+        <rect x="200" y="20" width="160" height="16" rx="8" fill="#12306b" fillOpacity="0.07" {...fill(0.6)} />
+
+        {/* Header: logo, links and the call button */}
+        <rect x="30" y="62" width="74" height="20" rx="5" fill="#12306b" {...fill(0.8)} />
+        <path d="M250 72 H290 M305 72 H345" stroke="#56627d" strokeWidth="3" strokeLinecap="round" {...draw(0.8)} />
+        <rect x="384" y="58" width="146" height="30" rx="15" fill="#f5b70a" {...fill(1.4)} />
+        <text x="457" y="77" textAnchor="middle" fontSize="12" fontWeight="700" fill="#12306b" fontFamily={sans}>
+          Call (571) 555-0100
+        </text>
+
+        {/* Headline, copy and button */}
+        <rect x="30" y="112" width="240" height="22" rx="5" fill="#12306b" {...fill(0.9)} />
+        <rect x="30" y="142" width="180" height="22" rx="5" fill="#12306b" {...fill(1)} />
+        <path d="M30 182 H260 M30 196 H220" stroke="#56627d" strokeWidth="4" strokeLinecap="round" {...draw(1.05)} />
+        <rect x="30" y="216" width="124" height="34" rx="17" fill="#2453c4" {...fill(1.2)} />
+        <text x="92" y="238" textAnchor="middle" fontSize="12" fontWeight="700" fill="#fff" fontFamily={sans}>
+          Book a visit
+        </text>
+
+        {/* Photo of the work */}
+        <rect
+          x="300"
+          y="108"
+          width="230"
+          height="146"
+          rx="12"
+          stroke="#2453c4"
+          strokeWidth="1.5"
+          strokeDasharray="5 5"
+          fill="#2453c4"
+          fillOpacity="0.05"
+          {...fill(0.9)}
+        />
+        <path d="M300 108 L530 254 M530 108 L300 254" stroke="#2453c4" strokeOpacity="0.35" strokeWidth="1" {...draw(1)} />
+        <circle cx="415" cy="181" r="22" fill="#fbfaf6" stroke="#2453c4" strokeWidth="1.5" {...fill(1.1)} />
+        <path d="M405 186 L412 178 L419 184 L425 176 L432 186 Z" stroke="#2453c4" strokeWidth="1.5" strokeLinejoin="round" {...draw(1.2)} />
+
+        {/* Reviews */}
+        {[0, 1, 2, 3, 4].map((i) => (
+          <path
+            key={i}
+            d={`M${38 + i * 22} 272 l3.5 7 7.7 1.1 -5.6 5.4 1.3 7.7 -6.9 -3.6 -6.9 3.6 1.3 -7.7 -5.6 -5.4 7.7 -1.1 z`}
+            fill="#f5b70a"
+            {...fill(1.6 + i * 0.06)}
+          />
+        ))}
+        <path d="M152 284 H260" stroke="#56627d" strokeWidth="4" strokeLinecap="round" {...draw(1.7)} />
+
+        {/* Three services */}
+        {[30, 200, 370].map((x, i) => (
+          <g key={x}>
+            <rect x={x} y="312" width="160" height="78" rx="12" stroke="#12306b" strokeWidth="1.5" {...draw(1.3 + i * 0.1)} />
+            <circle cx={x + 26} cy="338" r="11" fill="#2453c4" fillOpacity="0.15" {...fill(1.5 + i * 0.1)} />
+            <path
+              d={`M${x + 16} 364 H${x + 130} M${x + 16} 376 H${x + 100}`}
+              stroke="#56627d"
+              strokeWidth="3.5"
+              strokeLinecap="round"
+              {...draw(1.5 + i * 0.1)}
+            />
+          </g>
+        ))}
+      </svg>
+
+      {/* The phone version, overlapping the corner */}
+      <svg
+        viewBox="0 0 120 230"
+        fill="none"
+        aria-hidden="true"
+        className="anim-fade-up absolute -right-2 -bottom-2 w-[22%] drop-shadow-[0_20px_30px_rgb(18_48_107/0.2)] sm:-right-6 lg:-bottom-10"
         style={{ '--d': '0.9s' }}
       >
-        <div className="flex gap-1.5">
-          <span className="size-2 rounded-full bg-ink/25" />
-          <span className="size-2 rounded-full bg-ink/25" />
-          <span className="size-2 rounded-full bg-ink/25" />
-        </div>
-        <div className="text-left">
-          <Store className="size-6 sm:size-8" />
-          <p className="display mt-2 text-[clamp(1.4rem,4vw,2.6rem)]">Your business here</p>
-        </div>
-      </div>
+        <rect x="4" y="4" width="112" height="222" rx="20" fill="#12306b" />
+        <rect x="11" y="16" width="98" height="198" rx="12" fill="#fbfaf6" />
+        <rect x="20" y="30" width="40" height="10" rx="3" fill="#12306b" />
+        <rect x="20" y="56" width="78" height="12" rx="3" fill="#12306b" />
+        <rect x="20" y="74" width="56" height="12" rx="3" fill="#12306b" />
+        <rect x="20" y="98" width="80" height="26" rx="13" fill="#f5b70a" />
+        <rect x="20" y="134" width="80" height="50" rx="8" fill="#2453c4" fillOpacity="0.12" />
+        <path d="M20 196 H90" stroke="#56627d" strokeWidth="3" strokeLinecap="round" />
+      </svg>
 
-      <div
-        className="anim-fade-up absolute right-[4%] bottom-[-3rem] w-[22%] rotate-[8deg] overflow-hidden rounded-[1.4rem] border-[5px] border-ink bg-ink shadow-[0_30px_60px_-30px_rgb(23_19_15/0.5)] sm:right-[10%] sm:w-[16%]"
-        style={{ '--d': '1.05s' }}
-      >
-        <img
-          src={lumen.images.mobileSmall}
-          width="260"
-          height="563"
-          alt=""
-          decoding="async"
-          className="block h-auto w-full rounded-[1rem]"
-        />
-      </div>
+      {/* Handwritten notes, pointing at the parts that win customers */}
+      <HandNote className="top-[-9%] right-[-2%] sm:right-[0%]" delay={1.1} rotate={4} arrow="down">
+        your number, big &amp; tappable
+      </HandNote>
+      <HandNote className="top-[61%] left-[25%] hidden sm:flex" delay={1.3} rotate={-4} arrow="left">
+        real reviews
+      </HandNote>
+      <HandNote className="right-[24%] -bottom-6 hidden sm:flex lg:-bottom-14" delay={1.5} rotate={-3} arrow="right">
+        perfect on phones
+      </HandNote>
     </div>
   )
 }
 
-// A tilted band of the kinds of businesses served. It pauses on hover or with its button.
-function Ribbon() {
-  const [paused, setPaused] = useState(false)
-  const row = [...industries, ...industries]
+function HandNote({ children, className = '', delay, rotate, arrow }) {
+  const arrows = {
+    down: 'M40 4 C 46 16, 44 30, 30 42 M30 42 L 31 30 M30 42 L 41 38',
+    up: 'M8 44 C 4 30, 10 14, 26 6 M26 6 L 14 6 M26 6 L 22 17',
+    right: 'M4 30 C 20 40, 40 38, 56 22 M56 22 L 44 22 M56 22 L 54 34',
+    left: 'M56 30 C 40 40, 20 38, 4 22 M4 22 L 16 22 M4 22 L 6 34',
+  }
   return (
-    <div className="relative z-10 -mt-6 overflow-hidden py-6">
-      <div className="relative -mx-4 rotate-[-2deg] bg-tangerine py-4 shadow-[0_10px_30px_-15px_rgb(23_19_15/0.5)]">
-        <p className="sr-only">Built for local service businesses like {industries.join(', ')}.</p>
-        <div aria-hidden="true" className={`marquee flex w-max ${paused ? 'is-paused' : ''}`}>
-          {row.map((name, i) => (
-            <span key={i} className="display flex items-center gap-6 pr-6 text-3xl text-ink sm:text-4xl">
-              {name}
-              <svg viewBox="0 0 40 40" className="size-5 text-cream">
-                <path d="M20 0 L24 16 L40 20 L24 24 L20 40 L16 24 L0 20 L16 16 Z" fill="currentColor" />
-              </svg>
-            </span>
-          ))}
-        </div>
-        <button
-          type="button"
-          onClick={() => setPaused((v) => !v)}
-          aria-label={paused ? 'Play the scrolling list of businesses' : 'Pause the scrolling list of businesses'}
-          className="absolute top-1/2 right-8 grid size-8 -translate-y-1/2 place-items-center rounded-full bg-ink text-cream transition-transform duration-300 hover:scale-110"
-        >
-          {paused ? <Play aria-hidden="true" className="size-3.5" /> : <Pause aria-hidden="true" className="size-3.5" />}
-        </button>
-      </div>
-    </div>
+    <span
+      aria-hidden="true"
+      className={`anim-pop pointer-events-none absolute flex items-end gap-1 text-pencil ${className}`}
+      style={{ '--d': `${delay}s`, rotate: `${rotate}deg` }}
+    >
+      {(arrow === 'up' || arrow === 'left') && <NoteArrow d={arrows[arrow]} />}
+      <span className="hand rounded-md bg-paper/80 px-1 text-[1.35rem] sm:text-2xl">{children}</span>
+      {(arrow === 'down' || arrow === 'right') && <NoteArrow d={arrows[arrow]} />}
+    </span>
   )
 }
 
-// Two big hand-drawn loops at the edges of the hero, drawn on in CSS.
-function Loops() {
+function NoteArrow({ d }) {
   return (
-    <div aria-hidden="true" className="anim-fade-in pointer-events-none absolute inset-0 hidden sm:block">
-      <svg viewBox="0 0 300 600" fill="none" className="absolute top-[8%] -left-28 h-[42%] lg:-left-16">
-        <path
-          pathLength="1"
-          className="anim-draw"
-          style={{ '--d': '0.3s' }}
-          d="M-40 80 C 120 60, 230 160, 190 280 C 160 370, 40 360, 60 270 C 80 190, 220 230, 230 340 C 240 450, 120 540, -30 560"
-          stroke="var(--color-tangerine)"
-          strokeWidth="22"
-          strokeLinecap="round"
-        />
-      </svg>
-      <svg viewBox="0 0 300 600" fill="none" className="absolute top-[2%] -right-28 h-[40%] lg:-right-16">
-        <path
-          pathLength="1"
-          className="anim-draw"
-          style={{ '--d': '0.5s' }}
-          d="M340 60 C 180 40, 60 130, 110 240 C 150 320, 270 290, 240 210 C 210 130, 70 180, 80 300 C 90 420, 230 470, 330 520"
-          stroke="var(--color-tangerine)"
-          strokeWidth="22"
-          strokeLinecap="round"
-        />
-      </svg>
-      <svg viewBox="0 0 40 40" className="absolute top-[22%] left-[18%] size-6 text-sunshine sm:size-8">
-        <path d="M20 0 L24 16 L40 20 L24 24 L20 40 L16 24 L0 20 L16 16 Z" fill="currentColor" />
-      </svg>
-      <svg viewBox="0 0 40 40" className="absolute top-[58%] right-[16%] size-5 text-sky sm:size-7">
-        <path d="M20 0 L24 16 L40 20 L24 24 L20 40 L16 24 L0 20 L16 16 Z" fill="currentColor" />
-      </svg>
-    </div>
+    <svg viewBox="0 0 60 48" fill="none" className="h-9 w-11 shrink-0">
+      <path d={d} stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   )
 }

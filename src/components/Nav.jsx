@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, m } from 'framer-motion'
-import { ArrowUpRight } from 'lucide-react'
 import { brand, nav } from '../data/site'
 import { Wordmark, calm } from './ui'
 
@@ -28,82 +27,69 @@ export default function Nav() {
 
   return (
     <header
-      className={`anim-fade-in fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow] duration-500 ${
-        scrolled && !open ? 'bg-cream/85 shadow-[0_1px_0_rgb(23_19_15/0.06)] backdrop-blur-md' : ''
+      className={`anim-fade-in fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color] duration-500 ${
+        scrolled && !open ? 'border-navy/10 bg-paper/85 backdrop-blur-md' : 'border-transparent'
       }`}
-      style={{ '--d': '0.6s' }}
+      style={{ '--d': '0.5s' }}
     >
       <a
         href="#main"
-        className="sr-only rounded-full bg-ink px-4 py-2 text-sm font-semibold text-cream focus:not-sr-only focus:absolute focus:top-3 focus:left-3"
+        className="sr-only rounded-full bg-navy px-4 py-2 text-sm font-semibold text-paper focus:not-sr-only focus:absolute focus:top-3 focus:left-3"
       >
         Skip to content
       </a>
-      <div className="mx-auto grid h-16 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-4 sm:h-[4.5rem] sm:px-6 lg:px-10">
-        <nav aria-label="Main" className="hidden items-center gap-1.5 md:flex">
-          {nav.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="rounded-full bg-white px-3.5 py-2 text-[0.8rem] font-medium shadow-[0_1px_0_rgb(23_19_15/0.06)] transition-colors duration-300 hover:bg-sunshine"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
-        <a
-          href="#top"
-          className="relative z-10 col-start-1 justify-self-start md:col-start-2 md:justify-self-center"
-          aria-label={`${brand.name}, back to top`}
-          onClick={() => setOpen(false)}
-        >
-          <Wordmark mono={open} />
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:h-[4.5rem] sm:px-8 lg:px-10">
+        <a href="#top" className="relative z-10" onClick={() => setOpen(false)}>
+          <Wordmark />
         </a>
 
-        <div className="col-start-3 flex justify-end">
+        <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
+          {nav.map((item) => (
+            <a key={item.href} href={item.href} className="group relative text-sm font-medium">
+              {item.label}
+              <span
+                aria-hidden="true"
+                className="absolute inset-x-0 -bottom-1 h-[1.5px] origin-left scale-x-0 bg-pencil transition-transform duration-500 ease-(--ease-calm) group-hover:scale-x-100"
+              />
+            </a>
+          ))}
           <a
             href="#contact"
-            className="group hidden items-center gap-2 rounded-full bg-ink py-1.5 pr-1.5 pl-4 text-[0.85rem] font-semibold text-cream md:inline-flex"
+            className="rounded-full bg-navy px-5 py-2.5 text-sm font-semibold text-paper transition-colors duration-300 hover:bg-navy-deep"
           >
-            Let’s talk
-            <span className="grid size-7 place-items-center rounded-full bg-tangerine text-ink">
-              <ArrowUpRight
-                aria-hidden="true"
-                className="size-3.5 transition-transform duration-500 ease-(--ease-pop) group-hover:rotate-45"
-              />
-            </span>
+            Get a free quote
           </a>
-          <button
-            type="button"
-            className="relative z-10 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-cream md:hidden"
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? 'Close' : 'Menu'}
-          </button>
-        </div>
+        </nav>
+
+        <button
+          type="button"
+          className="relative z-10 rounded-full border-[1.5px] border-navy px-4 py-1.5 text-sm font-semibold md:hidden"
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          onClick={() => setOpen((v) => !v)}
+        >
+          {open ? 'Close' : 'Menu'}
+        </button>
       </div>
 
       <AnimatePresence>
         {open && (
           <m.div
             id="mobile-menu"
-            className="fixed inset-0 flex flex-col bg-tangerine px-5 pt-28 pb-10 md:hidden"
+            className="blueprint fixed inset-0 flex flex-col bg-paper px-5 pt-28 pb-10 md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, transition: { duration: 0.3 } }}
             transition={{ duration: 0.4, ease: calm }}
           >
             <nav aria-label="Mobile" className="flex flex-col">
-              {[...nav, { label: 'Let’s talk', href: '#contact' }].map((item, i) => (
+              {[...nav, { label: 'Get a free quote', href: '#contact' }].map((item, i) => (
                 <m.a
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="display border-b-2 border-ink/15 py-3 text-[3.4rem]"
-                  initial={{ opacity: 0, y: 24 }}
+                  className="display border-b border-navy/12 py-4 text-[2.6rem] last:text-pencil"
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7, ease: calm, delay: 0.06 + i * 0.05 }}
                 >
@@ -111,7 +97,7 @@ export default function Nav() {
                 </m.a>
               ))}
             </nav>
-            <p className="mt-auto text-sm font-medium">
+            <p className="label mt-auto text-slate">
               {brand.tagline} · {brand.location}
             </p>
           </m.div>

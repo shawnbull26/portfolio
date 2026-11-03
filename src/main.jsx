@@ -5,6 +5,8 @@ import NotFound from './components/NotFound'
 import Privacy from './components/Privacy'
 import '@fontsource-variable/inter-tight/wght.css'
 import '@fontsource-variable/archivo/wdth.css'
+import '@fontsource-variable/jetbrains-mono/wght.css'
+import '@fontsource-variable/caveat/wght.css'
 import './index.css'
 
 const root = document.getElementById('root')

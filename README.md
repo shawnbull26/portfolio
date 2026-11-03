@@ -14,8 +14,8 @@ npm run dev
 ## Where things live
 
 - `src/data/site.js`: all copy (brand, reasons, what's included, sample sites, process, pricing, about, FAQ), plus `siteUrl` (canonical and social tags) and `brand.photo` (set a path to replace the About monogram).
-- `src/components/`: one file per section (Hero, Why, Included, Samples, Process, Pricing, About, Faq, Contact) plus `ui.jsx` for shared pieces (wordmark, buttons, section headings, reveals).
-- Brand colors and fonts live in `src/index.css` (`@theme`): cream and blush backgrounds, `tangerine` (with `tangerine-deep` for orange text), plus `sunshine`, `sky` and `bubblegum` accents; Archivo condensed uppercase for headlines (the `display` utility), Inter Tight for body text. Tilted labels use the `sticker` utility.
+- `src/components/`: one file per section (Hero, Starting, Included, Samples, Testimonials, Process, Pricing, About, Faq, Contact) plus `ui.jsx` for shared pieces (wordmark, buttons, section headings, reveals).
+- Brand colors and fonts live in `src/index.css` (`@theme`): drafting-paper backgrounds with a `blueprint` grid, `navy`, `pencil` blue and `marigold`; Archivo for headlines (the `display` utility), Inter Tight for body text, JetBrains Mono for `label`s and the typed word, and Caveat for handwritten notes (`hand`, and the `Note` component).
 - `public/work/`: sample-site screenshots (WebP).
 - `scripts/og-image.html` and `scripts/apple-touch-icon.html`: sources for `public/og-image.jpg` and `public/apple-touch-icon.png`; each file's comment has the command to regenerate it.
 - `src/data/schema.js`: the schema.org business details added to the home page.

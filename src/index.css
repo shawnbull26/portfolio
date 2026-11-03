@@ -3,43 +3,56 @@
 @theme {
   --font-sans: 'Inter Tight Variable', ui-sans-serif, system-ui, sans-serif;
   --font-display: 'Archivo Variable', 'Inter Tight Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, monospace;
+  --font-hand: 'Caveat Variable', 'Comic Sans MS', cursive;
 
-  /* Design by Dae: warm cream, tangerine, and three sunny accents. */
-  --color-cream: #fff6ee;
-  --color-blush: #fbe8dc;
-  --color-ink: #17130f;
-  --color-ink-soft: #594f47;
-  --color-tangerine: #ff5a1f;
-  --color-tangerine-deep: #e8470b;
-  --color-sunshine: #ffc93c;
-  --color-sky: #8fd3ff;
-  --color-bubblegum: #ffb0cf;
+  /* Design by Dae: warm drafting paper, blueprint navy, a bright pencil blue and marigold. */
+  --color-paper: #f4f2ec;
+  --color-paper-light: #fbfaf6;
+  --color-paper-deep: #e9e6dd;
+  --color-navy: #12306b;
+  --color-navy-deep: #0c2257;
+  --color-slate: #56627d;
+  --color-pencil: #2453c4;
+  --color-pencil-light: #8fb0ff;
+  --color-marigold: #f5b70a;
+  --color-marigold-soft: #ffd75e;
 
   --ease-calm: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-pop: cubic-bezier(0.34, 1.4, 0.64, 1);
 }
 
-/* The headline voice: chunky, condensed, uppercase. */
+/* The headline voice: bold, slightly condensed, mixed case. */
 @utility display {
   font-family: var(--font-display);
-  font-weight: 800;
-  font-stretch: 72%;
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
-  line-height: 0.88;
+  font-weight: 750;
+  font-stretch: 88%;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
 }
 
-/* Little tilted labels that sit on top of headlines and cards. */
-@utility sticker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  border-radius: 999px;
-  padding: 0.45rem 0.95rem;
-  font-size: 0.8rem;
+/* Small monospace labels, like notes on a technical drawing. */
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Handwritten margin notes. */
+@utility hand {
+  font-family: var(--font-hand);
   font-weight: 600;
-  white-space: nowrap;
-  box-shadow: 0 6px 18px -8px rgb(23 19 15 / 0.45);
+  line-height: 1.05;
+}
+
+/* Marigold highlighter stroke behind a word. */
+@utility marker {
+  background-image: linear-gradient(transparent 58%, var(--color-marigold-soft) 58%, var(--color-marigold-soft) 92%, transparent 92%);
+  padding: 0 0.08em;
+  margin: 0 -0.08em;
+  box-decoration-break: clone;
 }
 
 @layer base {
@@ -48,7 +61,7 @@
     -webkit-tap-highlight-color: transparent;
   }
   body {
-    @apply bg-cream font-sans text-ink antialiased;
+    @apply bg-paper font-sans text-navy antialiased;
     text-rendering: optimizeLegibility;
   }
   h1,
@@ -63,11 +76,40 @@
     scroll-margin-top: 5rem;
   }
   ::selection {
-    @apply bg-sunshine text-ink;
+    @apply bg-marigold-soft text-navy;
   }
   :focus-visible {
-    @apply rounded-sm outline-2 outline-offset-4 outline-ink;
+    @apply rounded-sm outline-2 outline-offset-4 outline-pencil;
   }
+}
+
+/* Drafting-paper grid: fine lines every 24px with a stronger line every 120px. */
+.blueprint {
+  background-image:
+    linear-gradient(to right, rgb(36 83 196 / 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(36 83 196 / 0.09) 1px, transparent 1px),
+    linear-gradient(to right, rgb(36 83 196 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(36 83 196 / 0.04) 1px, transparent 1px);
+  background-size:
+    120px 120px,
+    120px 120px,
+    24px 24px,
+    24px 24px;
+}
+.blueprint-dark {
+  background-image:
+    linear-gradient(to right, rgb(143 176 255 / 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(143 176 255 / 0.12) 1px, transparent 1px),
+    linear-gradient(to right, rgb(143 176 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(143 176 255 / 0.05) 1px, transparent 1px);
+  background-size:
+    120px 120px,
+    120px 120px,
+    24px 24px,
+    24px 24px;
+}
+.fade-edges {
+  mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, black 40%, transparent);
 }
 
 /*
@@ -82,7 +124,7 @@
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(16px);
   }
 }
 @keyframes fade-in {
@@ -93,7 +135,7 @@
 @keyframes pop-in {
   from {
     opacity: 0;
-    scale: 0.6;
+    scale: 0.7;
   }
 }
 @keyframes draw {
@@ -101,68 +143,52 @@
     stroke-dashoffset: 1;
   }
 }
-@keyframes bob {
-  0%,
-  100% {
-    translate: 0 0;
-  }
+@keyframes blink {
   50% {
-    translate: 0 -6px;
+    opacity: 0;
   }
 }
-@keyframes marquee {
-  to {
-    transform: translateX(-50%);
-  }
-}
-@keyframes breathe {
-  0%,
-  100% {
+@keyframes ping {
+  0% {
     transform: scale(1);
-    opacity: 0.6;
+    opacity: 0.7;
   }
-  50% {
-    transform: scale(1.5);
+  80%,
+  100% {
+    transform: scale(2.2);
     opacity: 0;
   }
 }
 
-/* Each headline line rises out of its own mask. */
 .line-mask {
   display: block;
   overflow: hidden;
-  padding-bottom: 0.04em;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
 }
 .line-mask > span {
   display: block;
   animation: line-up 1s var(--ease-calm) var(--d, 0s) both;
 }
 .anim-fade-up {
-  animation: fade-up 1s var(--ease-calm) var(--d, 0s) both;
+  animation: fade-up 0.9s var(--ease-calm) var(--d, 0s) both;
 }
 .anim-fade-in {
-  animation: fade-in 1.2s ease-out var(--d, 0s) both;
+  animation: fade-in 1s ease-out var(--d, 0s) both;
 }
-/* Stickers pop in with a little overshoot, then keep a gentle bob. */
 .anim-pop {
-  animation:
-    pop-in 0.7s var(--ease-pop) var(--d, 0s) both,
-    bob 5s ease-in-out calc(var(--d, 0s) + 0.7s) infinite;
+  animation: pop-in 0.6s var(--ease-pop) var(--d, 0s) both;
 }
-/* SVG loops draw themselves on; paths need pathLength="1". */
+/* SVG strokes draw themselves on; paths need pathLength="1". */
 .anim-draw {
   stroke-dasharray: 1;
-  animation: draw 2.2s var(--ease-calm) var(--d, 0s) both;
+  animation: draw 1.6s var(--ease-calm) var(--d, 0s) both;
 }
-.marquee {
-  animation: marquee 34s linear infinite;
-}
-.marquee:hover,
-.marquee.is-paused {
-  animation-play-state: paused;
+.caret {
+  animation: blink 1s steps(1) infinite;
 }
 .ping {
-  animation: breathe 2.4s ease-out infinite;
+  animation: ping 2.2s ease-out infinite;
 }
 
 .skip-intro header {
@@ -170,10 +196,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  /* The scroll-fill statement simply shows in full. */
-  .fill-text span {
-    color: var(--color-ink) !important;
-  }
   html {
     scroll-behavior: auto;
   }

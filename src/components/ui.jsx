@@ -1,10 +1,10 @@
 import { m } from 'framer-motion'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 export const calm = [0.16, 1, 0.3, 1]
 export const pop = [0.34, 1.4, 0.64, 1]
 
-export function Reveal({ as = 'div', delay = 0, y = 28, amount = 0.3, className, children, ...props }) {
+export function Reveal({ as = 'div', delay = 0, y = 24, amount = 0.3, className, children, ...props }) {
   const Tag = m[as]
   return (
     <Tag
@@ -20,87 +20,80 @@ export function Reveal({ as = 'div', delay = 0, y = 28, amount = 0.3, className,
   )
 }
 
-// A tilted label that pops in when it scrolls into view.
-export function Sticker({ children, rotate = -6, tone = 'ink', delay = 0, className = '' }) {
-  const tones = {
-    ink: 'bg-ink text-cream',
-    tangerine: 'bg-tangerine text-ink',
-    sunshine: 'bg-sunshine text-ink',
-    sky: 'bg-sky text-ink',
-    bubblegum: 'bg-bubblegum text-ink',
-    cream: 'bg-cream text-ink',
-  }
+// A drafting-style label: a short rule, then a monospace caption.
+export function Label({ children, className = '' }) {
   return (
-    <m.span
-      className={`sticker ${tones[tone]} ${className}`}
-      initial={{ opacity: 0, scale: 0.6, rotate: 0 }}
-      whileInView={{ opacity: 1, scale: 1, rotate }}
-      viewport={{ once: true, amount: 1 }}
-      transition={{ duration: 0.7, ease: pop, delay }}
-    >
+    <p className={`label flex items-center gap-3 ${className}`}>
+      <span aria-hidden="true" className="h-px w-6 bg-current opacity-50" />
       {children}
-    </m.span>
+    </p>
   )
 }
 
-export function Eyebrow({ children, className = '' }) {
-  return <p className={`text-xs font-semibold tracking-[0.16em] uppercase ${className}`}>{children}</p>
-}
-
-// The wordmark: "design by dae." in condensed tangerine with an ink period, or all one color with `mono`.
-export function Wordmark({ mono = false, className = '' }) {
+// The logo: a navy tile with "d." beside the name.
+export function Wordmark({ inverted = false, className = '' }) {
   return (
-    <span
-      className={`font-display text-[1.6rem] leading-none font-extrabold tracking-[-0.01em] [font-stretch:72%] ${mono ? '' : 'text-tangerine-deep'} ${className}`}
-    >
-      design by dae<span className={mono ? '' : 'text-ink'}>.</span>
+    <span className={`inline-flex items-center gap-2.5 ${className}`}>
+      <span
+        aria-hidden="true"
+        className={`grid size-8 place-items-center rounded-lg font-display text-lg leading-none font-extrabold ${
+          inverted ? 'bg-paper text-navy' : 'bg-navy text-paper'
+        }`}
+      >
+        <span className="-mt-0.5">
+          d<span className="text-marigold">.</span>
+        </span>
+      </span>
+      <span className="font-display text-[1.15rem] font-bold tracking-[-0.03em] [font-stretch:92%]">Design by Dae</span>
     </span>
   )
 }
 
-// Pill button with a round arrow badge that spins a quarter turn on hover.
-export function Button({ href, children, variant = 'ink', className = '', ...props }) {
+// Pill button with an arrow that slides through on hover.
+export function Button({ href, children, variant = 'marigold', className = '', ...props }) {
   const variants = {
-    ink: ['bg-ink text-cream hover:bg-[#2b241d]', 'bg-tangerine text-ink'],
-    tangerine: ['bg-tangerine text-ink hover:bg-[#ff7240]', 'bg-ink text-cream'],
-    outline: ['border-2 border-ink text-ink hover:bg-ink hover:text-cream', 'bg-ink text-cream group-hover:bg-tangerine group-hover:text-ink'],
-    cream: ['bg-cream text-ink hover:bg-white', 'bg-tangerine text-ink'],
+    marigold: 'bg-marigold text-navy hover:bg-marigold-soft shadow-[0_8px_20px_-10px_rgb(245_183_10/0.8)]',
+    navy: 'bg-navy text-paper hover:bg-navy-deep',
+    outline: 'border-[1.5px] border-current hover:bg-navy hover:text-paper hover:border-navy',
+    paper: 'bg-paper text-navy hover:bg-white',
   }
-  const [pill, badge] = variants[variant]
   return (
     <a
       href={href}
-      className={`group inline-flex items-center gap-3 rounded-full py-1.5 pr-1.5 pl-5 text-[0.95rem] font-semibold transition-colors duration-300 ${pill} ${className}`}
+      className={`group inline-flex items-center gap-2.5 rounded-full px-6 py-3.5 text-[0.95rem] font-semibold transition-colors duration-300 ${variants[variant]} ${className}`}
       {...props}
     >
       {children}
-      <span className={`grid size-9 place-items-center rounded-full transition-colors duration-300 ${badge}`}>
-        <ArrowUpRight
+      <span className="relative grid size-4 overflow-hidden">
+        <ArrowRight
           aria-hidden="true"
-          className="size-4 transition-transform duration-500 ease-(--ease-pop) group-hover:rotate-45"
+          className="size-4 transition-transform duration-500 ease-(--ease-calm) group-hover:translate-x-5"
+        />
+        <ArrowRight
+          aria-hidden="true"
+          className="absolute inset-0 size-4 -translate-x-5 transition-transform duration-500 ease-(--ease-calm) group-hover:translate-x-0"
         />
       </span>
     </a>
   )
 }
 
-// Section intro: small label, big condensed headline, optional supporting line.
-export function SectionHead({ id, eyebrow, title, intro, align = 'left', className = '' }) {
+// Section intro: drafting label, bold headline, optional supporting line.
+export function SectionHead({ id, label, title, intro, tone = 'light', align = 'left', className = '' }) {
+  const muted = tone === 'light' ? 'text-slate' : 'text-paper/70'
   const center = align === 'center'
   return (
-    <div className={`${center ? 'mx-auto text-center' : ''} max-w-4xl ${className}`}>
+    <div className={`max-w-3xl ${center ? 'mx-auto text-center' : ''} ${className}`}>
       <Reveal>
-        <Eyebrow className="text-ink-soft">{eyebrow}</Eyebrow>
+        <Label className={`${tone === 'light' ? 'text-pencil' : 'text-pencil-light'} ${center ? 'justify-center' : ''}`}>
+          {label}
+        </Label>
       </Reveal>
-      <Reveal as="h2" id={id} delay={0.05} className="display mt-5 text-[clamp(3rem,8vw,6.5rem)]">
+      <Reveal as="h2" id={id} delay={0.05} className="display mt-5 text-[clamp(2.5rem,6vw,4.6rem)]">
         {title}
       </Reveal>
       {intro && (
-        <Reveal
-          as="p"
-          delay={0.12}
-          className={`mt-6 max-w-xl text-lg leading-relaxed text-ink-soft ${center ? 'mx-auto' : ''}`}
-        >
+        <Reveal as="p" delay={0.12} className={`mt-5 max-w-xl text-lg leading-relaxed ${muted} ${center ? 'mx-auto' : ''}`}>
           {intro}
         </Reveal>
       )}
@@ -108,21 +101,62 @@ export function SectionHead({ id, eyebrow, title, intro, align = 'left', classNa
   )
 }
 
-// A thick hand-drawn loop, drawn on as it scrolls into view.
-export function Squiggle({ className = '', color = 'var(--color-tangerine)', d, viewBox = '0 0 400 400', width = 26 }) {
+// A handwritten margin note with a little hand-drawn arrow. Decorative, so it's hidden from screen readers.
+// `showFrom` hides it on smaller screens ('sm' or 'lg'); `color` overrides the pencil blue.
+const showFromClasses = { all: 'inline-flex', sm: 'hidden sm:inline-flex', lg: 'hidden lg:inline-flex' }
+export function Note({ children, arrow = 'left', rotate = -4, delay = 0, showFrom = 'all', color = 'text-pencil', className = '' }) {
+  const arrows = {
+    left: 'M60 8 C 40 4, 18 10, 6 26 M6 26 L 4 14 M6 26 L 17 23',
+    right: 'M4 8 C 24 4, 46 10, 58 26 M58 26 L 60 14 M58 26 L 47 23',
+    down: 'M10 4 C 4 20, 10 36, 24 46 M24 46 L 12 44 M24 46 L 22 34',
+  }
   return (
-    <svg aria-hidden="true" viewBox={viewBox} fill="none" className={`pointer-events-none ${className}`}>
+    <m.span
+      aria-hidden="true"
+      className={`pointer-events-none items-center gap-1 ${showFromClasses[showFrom]} ${color} ${className}`}
+      initial={{ opacity: 0, scale: 0.85, rotate: 0 }}
+      whileInView={{ opacity: 1, scale: 1, rotate }}
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{ duration: 0.6, ease: pop, delay }}
+    >
+      {arrow === 'left' && <Arrow d={arrows.left} />}
+      <span className="hand text-xl sm:text-2xl">{children}</span>
+      {arrow !== 'left' && <Arrow d={arrows[arrow]} />}
+    </m.span>
+  )
+}
+
+function Arrow({ d }) {
+  return (
+    <svg viewBox="0 0 64 50" fill="none" className="h-8 w-10 shrink-0">
+      <path d={d} stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+// A thin pencil line that draws itself as it scrolls into view. The whole SVG is watched, since
+// browsers don't report visibility for individual paths reliably.
+export function PencilLine({ d, viewBox = '0 0 1200 120', className = '', color = 'var(--color-pencil)', delay = 0 }) {
+  return (
+    <m.svg
+      aria-hidden="true"
+      viewBox={viewBox}
+      fill="none"
+      preserveAspectRatio="none"
+      className={`pointer-events-none ${className}`}
+      initial="hidden"
+      whileInView="drawn"
+      viewport={{ once: true, amount: 0.3 }}
+    >
       <m.path
         d={d}
         stroke={color}
-        strokeWidth={width}
+        strokeWidth="2.5"
         strokeLinecap="round"
-        strokeLinejoin="round"
-        initial={{ pathLength: 0 }}
-        whileInView={{ pathLength: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 2, ease: calm }}
+        vectorEffect="non-scaling-stroke"
+        variants={{ hidden: { pathLength: 0 }, drawn: { pathLength: 1 } }}
+        transition={{ duration: 2, ease: calm, delay }}
       />
-    </svg>
+    </m.svg>
   )
 }

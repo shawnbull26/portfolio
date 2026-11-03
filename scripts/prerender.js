@@ -12,7 +12,7 @@ const { render, renderNotFound, renderPrivacy, siteUrl, businessSchema } = await
 
 // Preload the Latin font files used above the fold so the hero paints in the right font.
 const fontPreloads = (await readdir(join(dist, 'assets')))
-  .filter((f) => /^(inter-tight-latin-wght-normal|archivo-latin-wdth-normal)-.*\.woff2$/.test(f))
+  .filter((f) => /^(inter-tight-latin-wght-normal|archivo-latin-wdth-normal|jetbrains-mono-latin-wght-normal)-.*\.woff2$/.test(f))
   .map((f) => `<link rel="preload" href="/assets/${f}" as="font" type="font/woff2" crossorigin />`)
   .join('\n    ')
 

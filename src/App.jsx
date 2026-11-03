@@ -1,7 +1,7 @@
 import { LazyMotion, MotionConfig } from 'framer-motion'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
-import Why from './components/Why'
+import Starting from './components/Starting'
 import Included from './components/Included'
 import Samples from './components/Samples'
 import Testimonials from './components/Testimonials'
@@ -20,7 +20,7 @@ export default function App() {
         <Nav />
         <main id="main">
           <Hero />
-          <Why />
+          <Starting />
           <Included />
           <Samples />
           <Testimonials />
