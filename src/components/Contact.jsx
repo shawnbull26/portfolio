@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, m } from 'framer-motion'
-import { ArrowRight, ArrowUp } from 'lucide-react'
+import { ArrowRight, ArrowUp, CalendarDays, Mail, Phone } from 'lucide-react'
 import { brand, projectTypes } from '../data/site'
 import { Eyebrow, Reveal, Wordmark, calm } from './ui'
 
@@ -32,6 +32,7 @@ export default function Contact() {
               Tell me a little about your business. A few sentences is plenty. Every message gets a personal reply
               from me with honest thoughts and clear next steps. No pressure, and no jargon.
             </Reveal>
+            <ContactOptions />
           </div>
 
           <Reveal delay={0.25} className="rounded-3xl border border-white/8 bg-night-raised p-6 sm:p-10 lg:col-span-7 lg:col-start-6">
@@ -47,8 +48,8 @@ export default function Contact() {
             </span>
           </p>
           <div className="flex items-center gap-8">
-            <a href={brand.github} target="_blank" rel="noreferrer" className="transition-colors duration-500 hover:text-cloud">
-              GitHub
+            <a href="/privacy/" className="transition-colors duration-500 hover:text-cloud">
+              Privacy
             </a>
             <a href="#top" className="group inline-flex items-center gap-2 transition-colors duration-500 hover:text-cloud">
               Back to top
@@ -61,6 +62,34 @@ export default function Contact() {
         </footer>
       </div>
     </div>
+  )
+}
+
+// Phone, email and booking links appear here only once they're set in brand (src/data/site.js).
+function ContactOptions() {
+  const options = [
+    brand.booking && { icon: CalendarDays, label: 'Book a free 20-minute call', href: brand.booking, external: true },
+    brand.phone && { icon: Phone, label: `Call or text ${brand.phone}`, href: `tel:${brand.phone.replace(/[^\d+]/g, '')}` },
+    brand.email && { icon: Mail, label: brand.email, href: `mailto:${brand.email}` },
+  ].filter(Boolean)
+  if (!options.length) return null
+  return (
+    <Reveal as="ul" delay={0.3} className="mt-10 space-y-3">
+      {options.map(({ icon: Icon, label, href, external }) => (
+        <li key={href}>
+          <a
+            href={href}
+            {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
+            className="group inline-flex items-center gap-3 font-medium transition-colors duration-300 hover:text-signal"
+          >
+            <span className="grid size-10 place-items-center rounded-full border border-white/12 text-signal transition-colors duration-300 group-hover:border-signal">
+              <Icon aria-hidden="true" className="size-4" />
+            </span>
+            {label}
+          </a>
+        </li>
+      ))}
+    </Reveal>
   )
 }
 

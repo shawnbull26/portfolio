@@ -1,5 +1,5 @@
 import { Check } from 'lucide-react'
-import { pricing } from '../data/site'
+import { pricing, spotsText } from '../data/site'
 import { Reveal, SectionHead } from './ui'
 
 // Package buttons tell the contact form which option to preselect.
@@ -31,7 +31,7 @@ export default function Pricing() {
               <span className="breathe absolute inset-0 rounded-full bg-signal" />
               <span className="relative size-1.5 rounded-full bg-signal" />
             </span>
-            {pricing.founding.spots}
+            {spotsText}
           </p>
           <p className="leading-relaxed text-cloud/85">{pricing.founding.text}</p>
         </Reveal>

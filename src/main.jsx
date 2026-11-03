@@ -2,12 +2,13 @@ import { StrictMode } from 'react'
 import { createRoot, hydrateRoot } from 'react-dom/client'
 import App from './App'
 import NotFound from './components/NotFound'
+import Privacy from './components/Privacy'
 import '@fontsource-variable/inter-tight/wght.css'
 import '@fontsource-variable/archivo/wdth.css'
 import './index.css'
 
 const root = document.getElementById('root')
-const Page = root.dataset.page === '404' ? NotFound : App
+const Page = { 404: NotFound, privacy: Privacy }[root.dataset.page] ?? App
 const app = (
   <StrictMode>
     <Page />

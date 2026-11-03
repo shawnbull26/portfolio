@@ -62,8 +62,8 @@ function SampleCard({ sample }) {
           </div>
           <img
             src={sample.images.desktop}
-            srcSet={`${sample.images.desktop} 960w, ${sample.images.desktopLarge} 1440w`}
-            sizes="(min-width: 1024px) 560px, 90vw"
+            srcSet={`${sample.images.desktopSmall} 640w, ${sample.images.desktop} 960w, ${sample.images.desktopLarge} 1440w`}
+            sizes="(min-width: 1280px) 520px, (min-width: 1024px) 40vw, 80vw"
             width="1440"
             height="900"
             loading="lazy"
@@ -78,6 +78,8 @@ function SampleCard({ sample }) {
         >
           <img
             src={sample.images.mobile}
+            srcSet={`${sample.images.mobileSmall} 260w, ${sample.images.mobile} 390w`}
+            sizes="(min-width: 1280px) 130px, (min-width: 1024px) 10vw, 20vw"
             width="390"
             height="844"
             loading="lazy"

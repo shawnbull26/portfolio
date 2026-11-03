@@ -4,6 +4,7 @@ import Hero from './components/Hero'
 import Why from './components/Why'
 import Included from './components/Included'
 import Samples from './components/Samples'
+import Testimonials from './components/Testimonials'
 import Process from './components/Process'
 import Pricing from './components/Pricing'
 import About from './components/About'
@@ -23,6 +24,7 @@ export default function App() {
           <Why />
           <Included />
           <Samples />
+          <Testimonials />
           <Process />
           <Pricing />
           <About />

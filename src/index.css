@@ -168,6 +168,10 @@
 .marquee {
   animation: marquee 38s linear infinite;
 }
+.marquee:hover,
+.marquee.is-paused {
+  animation-play-state: paused;
+}
 
 .skip-intro header {
   --d: 0s !important;

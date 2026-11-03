@@ -5,13 +5,17 @@ export const brand = {
   owner: 'Daeshawn Bullock',
   tagline: 'Websites for local businesses that don’t have one yet',
   location: 'Northern Virginia',
-  github: 'https://github.com/shawnbull26',
   // Drop a portrait in public/ (about 800×1000) and set its path here to replace the monogram card.
   photo: null,
+  // Contact details stay hidden until set, e.g. phone: '(571) 555-0100', email: 'hello@designbydae.com',
+  // booking: 'https://cal.com/designbydae/intro'. Each one then appears in the contact section and the site's business info.
+  phone: null,
+  email: null,
+  booking: null,
 }
 
 // The public address once deployed. Used for the canonical link and social preview tags.
-export const siteUrl = 'https://designbydae.netlify.app'
+export const siteUrl = 'https://design-by-dae.netlify.app'
 
 export const nav = [
   { label: 'What you get', href: '#included' },
@@ -72,8 +76,10 @@ export const samples = [
     url: 'https://apex-mobile-detailing-example.netlify.app',
     note: 'Bold and direct, with prices up front and a call button always in reach.',
     images: {
+      desktopSmall: '/work/apex-desktop-640.webp',
       desktop: '/work/apex-desktop-960.webp',
       desktopLarge: '/work/apex-desktop.webp',
+      mobileSmall: '/work/apex-mobile-260.webp',
       mobile: '/work/apex-mobile.webp',
     },
   },
@@ -84,8 +90,10 @@ export const samples = [
     url: 'https://lumen-clean-co.netlify.app',
     note: 'Calm and reassuring, built for a service people let into their homes.',
     images: {
+      desktopSmall: '/work/lumen-desktop-640.webp',
       desktop: '/work/lumen-desktop-960.webp',
       desktopLarge: '/work/lumen-desktop.webp',
+      mobileSmall: '/work/lumen-mobile-260.webp',
       mobile: '/work/lumen-mobile.webp',
     },
   },
@@ -114,7 +122,9 @@ export const pricing = {
   // Founding-client rates: the first few clients pay `price`; `regular` is the standard rate shown struck through.
   founding: {
     label: 'Founding-client rates',
-    spots: 'For my first 3 clients',
+    // Lower spotsLeft as founding clients sign on; at 0, switch the packages to their regular prices.
+    spotsTotal: 3,
+    spotsLeft: 3,
     text: 'I’m taking on my first three clients at a founding rate. You get the same work at a lower price, and I ask for your honest feedback and, if you’re happy, a testimonial.',
   },
   packages: [
@@ -161,6 +171,9 @@ export const pricing = {
   terms: '50% to start, 50% when your site is ready to launch. The Care Plan is optional, and most clients keep it. Extra pages, logo refreshes and rush delivery are available as add-ons.',
 }
 
+const { spotsLeft, spotsTotal } = pricing.founding
+export const spotsText = `${spotsLeft} of ${spotsTotal} spots left`
+
 export const about = {
   heading: 'Hi, I’m Dae.',
   paragraphs: [
@@ -192,9 +205,25 @@ export const faqs = [
     a: 'Small fixes are covered for 30 days after launch. After that, the Care Plan includes small monthly updates like new photos, hours or text changes. Bigger additions are quoted up front.',
   },
   {
+    q: 'Do I own my website?',
+    a: 'Yes. Your domain is in your name, and the site is yours. If you ever move on, I’ll hand over everything you need to take it with you.',
+  },
+  {
+    q: 'I already have a Facebook page. Do I still need this?',
+    a: 'Facebook is great for staying in touch, but it doesn’t show up well on Google, and you don’t control it. A website gives customers one trustworthy place to see your services, prices and how to reach you, and you can link it right from your page.',
+  },
+  {
+    q: 'How do I pay?',
+    a: '50% to get started and 50% when your site is ready to launch, by card or bank transfer. If you choose the Care Plan, it’s billed monthly from launch, and you can cancel any time.',
+  },
+  {
     q: 'Do I have to sign up for the Care Plan?',
     a: 'No, it’s optional. Most owners keep it because it means never thinking about hosting, security or updates, but the choice is yours.',
   },
 ]
+
+// Add quotes here as founding clients share them; the section stays hidden while this list is empty.
+// Example: { quote: 'Dae made the whole thing easy…', name: 'Maria L.', business: 'Bright Paws Grooming' }
+export const testimonials = []
 
 export const projectTypes = ['Starter Website', 'Growth Website', 'Not sure yet']
