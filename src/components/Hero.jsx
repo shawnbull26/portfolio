@@ -29,13 +29,12 @@ export default function Hero() {
           <h1 className="display mt-5 text-[clamp(2.9rem,6.4vw,5.6rem)]">
             <span className="line-mask">
               <span style={{ '--d': '0.1s' }}>Let’s put your</span>
-            </span>
+            </span>{' '}
             <span className="line-mask">
               <span style={{ '--d': '0.2s' }}>
-                <span className="sr-only">local</span>
                 <Typed words={heroTrades} />
               </span>
-            </span>
+            </span>{' '}
             <span className="line-mask">
               <span style={{ '--d': '0.3s' }}>
                 business <span className="marker">online.</span>
@@ -44,8 +43,8 @@ export default function Hero() {
           </h1>
 
           <p className="anim-fade-up mt-7 max-w-lg text-lg leading-relaxed text-slate" style={{ '--d': '0.45s' }}>
-            I design and build websites for local businesses that don’t have one yet, so customers can find you on
-            Google, trust you at a glance, and pick up the phone.
+            I build websites for local businesses that don’t have one yet, so people searching for what you do can
+            find you and call.
           </p>
 
           <div className="anim-fade-up mt-9 flex flex-wrap items-center gap-3" style={{ '--d': '0.55s' }}>
@@ -77,7 +76,7 @@ export default function Hero() {
 }
 
 // Types and deletes each word in turn, like someone filling in the blank. Starts on the last word
-// ("local") so the prerendered page and no-JS visitors read a complete sentence.
+// ("local") so the prerendered page, search engines and no-JS visitors read a complete sentence.
 function Typed({ words }) {
   const [index, setIndex] = useState(words.length - 1)
   const [text, setText] = useState(words[words.length - 1])
@@ -102,13 +101,9 @@ function Typed({ words }) {
   // A fixed width (the longest word) keeps the headline from reflowing as letters change.
   const width = `${Math.max(...words.map((w) => w.length)) + 1}ch`
   return (
-    <span
-      aria-hidden="true"
-      className="inline-block font-mono font-medium tracking-[-0.06em] text-pencil"
-      style={{ minWidth: width }}
-    >
+    <span className="inline-block font-mono font-medium tracking-[-0.06em] text-pencil" style={{ minWidth: width }}>
       {text}
-      <span className="caret ml-0.5 inline-block h-[0.8em] w-[0.08em] translate-y-[0.08em] bg-pencil" />
+      <span aria-hidden="true" className="caret ml-0.5 inline-block h-[0.8em] w-[0.08em] translate-y-[0.08em] bg-pencil" />
     </span>
   )
 }
@@ -143,7 +138,7 @@ function Blueprint() {
         <path d="M250 72 H290 M305 72 H345" stroke="#56627d" strokeWidth="3" strokeLinecap="round" {...draw(0.8)} />
         <rect x="384" y="58" width="146" height="30" rx="15" fill="#f5b70a" {...fill(1.4)} />
         <text x="457" y="77" textAnchor="middle" fontSize="12" fontWeight="700" fill="#12306b" fontFamily={sans}>
-          Call (571) 555-0100
+          Call now
         </text>
 
         {/* Headline, copy and button */}
@@ -221,9 +216,6 @@ function Blueprint() {
       {/* Handwritten notes, pointing at the parts that win customers */}
       <HandNote className="top-[-9%] right-[-2%] sm:right-[0%]" delay={1.1} rotate={4} arrow="down">
         your number, big &amp; tappable
-      </HandNote>
-      <HandNote className="top-[61%] left-[25%] hidden sm:flex" delay={1.3} rotate={-4} arrow="left">
-        real reviews
       </HandNote>
       <HandNote className="right-[24%] -bottom-6 hidden sm:flex lg:-bottom-14" delay={1.5} rotate={-3} arrow="right">
         perfect on phones

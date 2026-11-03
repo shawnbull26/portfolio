@@ -1,6 +1,6 @@
 import { CalendarCheck, LayoutTemplate, PenLine, Search, ShieldCheck, Smartphone } from 'lucide-react'
 import { included } from '../data/site'
-import { Button, Note, Reveal, SectionHead } from './ui'
+import { Button, Reveal, SectionHead } from './ui'
 
 const icons = [LayoutTemplate, Smartphone, CalendarCheck, Search, PenLine, ShieldCheck]
 
@@ -14,13 +14,10 @@ export default function Included() {
           <SectionHead
             id="included-title"
             label="What you get"
-            title="A website that works as hard as you do."
-            intro="Everything a local business needs to look professional and turn visitors into calls, handled from start to finish."
+            title="What every site includes."
+            intro="Design, writing help, setup and launch, all handled by me. You don’t need to hire anyone else or learn any software."
           />
-          <Reveal delay={0.2} className="flex shrink-0 flex-col items-start gap-3 lg:items-end">
-            <Note arrow="down" rotate={-3} showFrom="lg">
-              all done for you
-            </Note>
+          <Reveal delay={0.2} className="shrink-0">
             <Button href="#pricing" variant="outline">
               Compare packages
             </Button>

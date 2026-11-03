@@ -2,7 +2,7 @@ import { useId, useState } from 'react'
 import { AnimatePresence, m } from 'framer-motion'
 import { Plus } from 'lucide-react'
 import { faqs } from '../data/site'
-import { Button, Note, Reveal, SectionHead, calm } from './ui'
+import { Button, Reveal, SectionHead, calm } from './ui'
 
 export default function Faq() {
   return (
@@ -17,15 +17,12 @@ export default function Faq() {
                 New to websites? <span className="marker">Good.</span>
               </>
             }
-            intro="If you’ve never had a website before, you’re in the right place. These are the questions owners usually ask first."
+            intro="The questions business owners tend to ask before getting their first website."
           />
-          <Reveal delay={0.2} className="mt-10 flex flex-wrap items-center gap-4">
+          <Reveal delay={0.2} className="mt-10">
             <Button href="#contact" variant="outline">
               Ask me anything
             </Button>
-            <Note arrow="left" rotate={-4} delay={0.4}>
-              no silly questions
-            </Note>
           </Reveal>
         </div>
 

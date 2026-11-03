@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, m } from 'framer-motion'
 import { ArrowRight, ArrowUp, CalendarDays, Mail, Phone } from 'lucide-react'
 import { brand, projectTypes } from '../data/site'
-import { Label, Note, Reveal, Wordmark, calm } from './ui'
+import { Label, Reveal, Wordmark, calm } from './ui'
 
 const encode = (data) => new URLSearchParams(data).toString()
 
@@ -21,13 +21,10 @@ export default function Contact() {
                 Ready to get <span className="text-marigold">found?</span>
               </Reveal>
               <Reveal delay={0.2} as="p" className="mt-7 max-w-sm text-lg leading-relaxed text-paper/75">
-                Tell me a little about your business. A few sentences is plenty. Every message gets a personal reply
-                from me with honest thoughts, a clear quote and next steps. No pressure, and no jargon.
+                Tell me a little about your business. A few sentences is enough. I’ll reply myself with a quote and
+                what I’d suggest, and there’s no obligation to go ahead.
               </Reveal>
               <ContactOptions />
-              <Note arrow="right" rotate={-4} delay={0.5} showFrom="lg" color="text-marigold-soft" className="mt-10">
-                takes about 2 minutes
-              </Note>
             </div>
 
             <Reveal
@@ -168,7 +165,7 @@ function ContactForm() {
             <p className="display text-6xl">
               Thank you. <span className="marker">Talk soon.</span>
             </p>
-            <p className="mt-6 max-w-sm text-slate">Your message is in, and you'll hear back from me personally.</p>
+            <p className="mt-6 max-w-sm text-slate">Your message is in. I’ll reply with a quote and what I’d suggest.</p>
           </m.div>
         ) : (
           <m.form
@@ -192,7 +189,7 @@ function ContactForm() {
             </p>
 
             <fieldset>
-              <legend className="mb-3 text-sm font-semibold">I'm interested in</legend>
+              <legend className="mb-3 text-sm font-semibold">I’m interested in</legend>
               <input type="hidden" name="project-type" value={type} />
               <div className="flex flex-wrap gap-2.5">
                 {projectTypes.map((option) => (
@@ -245,7 +242,7 @@ function ContactForm() {
               </button>
               {status === 'error' && (
                 <p role="alert" className="text-sm font-medium text-[#b42318]">
-                  That didn't go through. Please try again in a moment.
+                  That didn’t go through. Please try again in a moment.
                 </p>
               )}
             </div>

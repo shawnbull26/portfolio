@@ -1,6 +1,6 @@
 import { Check } from 'lucide-react'
 import { pricing, spotsText } from '../data/site'
-import { Note, Reveal, SectionHead } from './ui'
+import { Reveal, SectionHead } from './ui'
 
 // Package buttons tell the contact form which option to preselect.
 const choosePackage = (name) => window.dispatchEvent(new CustomEvent('choose-package', { detail: name }))
@@ -20,7 +20,7 @@ export default function Pricing() {
                 Clear prices. <span className="marker">No surprises.</span>
               </>
             }
-            intro="One extra job usually pays for the site. You’ll know exactly what you’re getting and what it costs before we start."
+            intro="A fixed price, agreed before any work starts. No hourly billing, and no extra charges you didn’t agree to."
           />
           <Reveal delay={0.15} className="max-w-sm rounded-2xl border-[1.5px] border-dashed border-pencil/50 p-5">
             <p className="label flex items-center gap-2 text-pencil">
@@ -98,11 +98,6 @@ function Package({ pkg, featured = false }) {
             {pkg.from && <span className={muted}>from</span>}
             <span className={`display ${featured ? 'text-7xl sm:text-8xl' : 'text-6xl sm:text-7xl'}`}>{pkg.price}</span>
             <span className={`whitespace-nowrap ${muted}`}>one-time</span>
-            {featured && (
-              <Note arrow="left" rotate={-6} delay={0.4} showFrom="sm" color="text-marigold-soft" className="ml-2">
-                most owners pick this
-              </Note>
-            )}
           </p>
         </div>
 

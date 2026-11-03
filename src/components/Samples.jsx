@@ -21,7 +21,7 @@ export default function Samples() {
               See what yours <span className="text-marigold">could look like.</span>
             </>
           }
-          intro="Two sample sites I designed and built for local service businesses. Each has its own personality, and both are made to turn visitors into calls."
+          intro="I designed and built these two sites for made-up local businesses, to show what I’d make for a real one. Click either to try it."
         />
 
         <div className="mt-14 grid gap-8 sm:mt-20 lg:grid-cols-2">

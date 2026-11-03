@@ -10,7 +10,7 @@ export const businessSchema = {
   logo: `${siteUrl}/apple-touch-icon.png`,
   description: `${brand.name} designs and builds websites for local businesses that don’t have one yet.`,
   areaServed: { '@type': 'AdministrativeArea', name: brand.location },
-  priceRange: `${pricing.packages[0].price}–${pricing.packages[1].regular}`,
+  priceRange: `From ${pricing.packages[0].price}`,
   founder: { '@type': 'Person', name: brand.owner },
   ...(brand.phone && { telephone: brand.phone }),
   ...(brand.email && { email: brand.email }),

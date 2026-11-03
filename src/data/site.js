@@ -24,7 +24,7 @@ export const nav = [
   { label: 'FAQ', href: '#faq' },
 ]
 
-export const heroFacts = ['Live in about a week', 'From $697', 'You own it', 'No tech talk']
+export const heroFacts = ['Live 5–10 days after you send your content', 'From $697', 'You own your site']
 
 // The hero's typed word cycles through these.
 export const heroTrades = ['detailing', 'cleaning', 'landscaping', 'barber', 'painting', 'plumbing', 'local']
@@ -34,22 +34,22 @@ export const startingPoints = [
   {
     id: 'none',
     label: 'No website at all.',
-    note: 'where most owners start',
-    text: 'Perfect. We start from a blank page: your services, your area and how customers reach you. Most Starter sites are live in about a week.',
+    note: 'a fresh start',
+    text: 'I build it from scratch around your services, your area and how customers should reach you. A Starter site is usually live 5–10 days after you send your content.',
     choice: 'Starter Website',
   },
   {
     id: 'social',
     label: 'Just a Facebook or Instagram page.',
-    note: 'a great head start',
-    text: 'Your page already has photos and reviews. I’ll turn them into a real site that shows up on Google, and link the two so they work together.',
+    note: 'a head start',
+    text: 'Your page already has photos and reviews. I’ll use them to build a site that shows up on Google, then link it to your page.',
     choice: 'Starter Website',
   },
   {
     id: 'old',
     label: 'An old site I’m not proud of.',
-    note: 'we can fix that',
-    text: 'We keep what works, like your domain and any search ranking, and rebuild the rest so it looks like the business you are today.',
+    note: 'very fixable',
+    text: 'I keep what still works, like your domain and any search ranking, and rebuild the rest so it matches how your business looks and runs now.',
     choice: 'A redesign',
   },
 ]
@@ -57,27 +57,27 @@ export const startingPoints = [
 export const included = [
   {
     title: 'Designed around your business',
-    text: 'No cookie-cutter template. A clean, modern look built around what you do and who you serve.',
+    text: 'Built from scratch for what you do and who you serve, not a template with your logo dropped in.',
   },
   {
     title: 'Made for phones first',
-    text: 'Most of your customers will find you on a phone, so every page is built to load fast and read well there.',
+    text: 'People usually look you up on their phone, so every page loads fast and reads well on a small screen.',
   },
   {
     title: 'Easy to call or book',
-    text: 'Click-to-call buttons and a simple request form on every page, so interest turns into a conversation.',
+    text: 'A tap-to-call button and a short request form on every page, so nobody has to hunt for your number.',
   },
   {
     title: 'Found on Google',
     text: 'Local search basics set up from day one, and a connection to your Google Business Profile.',
   },
   {
-    title: 'Words written for you',
-    text: 'Not a writer? No problem. I help shape the wording from a quick chat about your business.',
+    title: 'Help with the words',
+    text: 'After a short chat, I draft the text for each page and you tell me what to change.',
   },
   {
-    title: 'Looked after afterwards',
-    text: 'Hosting, security and small updates handled for you on the Care Plan, so the site never goes stale.',
+    title: 'Kept up to date',
+    text: 'On the Care Plan, I take care of hosting, security and small edits, so your hours and photos stay current.',
   },
 ]
 
@@ -115,11 +115,11 @@ export const samples = [
 export const steps = [
   {
     title: 'Quick call',
-    text: 'A relaxed 20-minute chat about your business, your customers and what you want the site to do.',
+    text: 'A 20-minute call about your business and what you want the site to do for you.',
   },
   {
     title: 'I build it',
-    text: 'I design the site and write the words with you, sharing a live preview as it comes together.',
+    text: 'I design the site and draft the text, and send you a live preview link as it comes together.',
   },
   {
     title: 'You review',
@@ -127,18 +127,17 @@ export const steps = [
   },
   {
     title: 'You go live',
-    text: 'Your site launches on your own domain, with forms and Google set up, usually 5–10 days after I have your content.',
+    text: 'Your site goes live on your own domain with the form and Google set up, usually 5–10 days after you send your content.',
   },
 ]
 
 export const pricing = {
   // Founding-client rates: the first few clients pay `price`; `regular` is the standard rate shown struck through.
   founding: {
-    label: 'Founding-client rates',
     // Lower spotsLeft as founding clients sign on; at 0, switch the packages to their regular prices.
     spotsTotal: 3,
     spotsLeft: 3,
-    text: 'I’m taking on my first three clients at a founding rate. You get the same work at a lower price, and I ask for your honest feedback and, if you’re happy, a testimonial.',
+    text: 'My first three clients get a lower founding rate for the same work. In return, I’ll ask for feedback and, if you’re happy with the result, a short review.',
   },
   packages: [
     {
@@ -146,8 +145,8 @@ export const pricing = {
       name: 'Starter Website',
       price: '$697',
       regular: '$997',
-      tagline: 'Everything most local businesses need to look professional and get more calls.',
-      badge: 'Most popular',
+      tagline: 'What a local business needs to look professional online and get more calls.',
+      badge: 'Recommended',
       features: [
         'Up to 5 pages: Home, Services, About, Contact, plus Gallery or Reviews',
         'Mobile-friendly, fast-loading design built around calls and quote requests',
@@ -179,31 +178,30 @@ export const pricing = {
   care: {
     name: 'Care Plan',
     price: '$69',
-    text: 'Hosting, security updates, regular backups, performance checks and priority support, plus small changes each month like new photos, hours or text updates (about 30–45 minutes).',
+    text: 'Hosting, security updates, backups and speed checks, plus up to 30–45 minutes of small changes each month, like new photos, hours or prices.',
   },
-  terms: '50% to start, 50% when your site is ready to launch. The Care Plan is optional, and most clients keep it. Extra pages, logo refreshes and rush delivery are available as add-ons.',
+  terms: '50% to start and 50% when your site is ready to launch. The Care Plan is optional. Extra pages, a logo refresh or rush delivery can be added for a set price.',
 }
 
 const { spotsLeft, spotsTotal } = pricing.founding
 export const spotsText = `${spotsLeft} of ${spotsTotal} spots left`
 
 export const about = {
-  heading: 'Hi, I’m Dae.',
   paragraphs: [
-    'I’m Daeshawn, a web designer and developer in Northern Virginia. I started Design by Dae for the businesses that keep a neighborhood running but still don’t have a website: the detailer booked solid through word of mouth, the cleaning crew everyone recommends, the contractor with a great reputation and no way to be found online.',
-    'I’m taking on my first clients now, which means you work directly with me from the first call to well after launch. No account managers, no jargon, and no disappearing for weeks.',
+    'I’m Daeshawn, a web designer and developer in Northern Virginia. I started Design by Dae for local businesses that do great work but still don’t have a website, like the detailer who’s booked solid through word of mouth but doesn’t show up when someone searches.',
+    'I’m taking on my first clients now, so you’ll work with me directly, from the first call until well after launch.',
   ],
-  promises: ['Clear prices before we start', 'Replies from me, not a ticket system', 'A site you’re proud to send people to'],
+  promises: ['You’ll know the price before any work starts', 'Every reply comes from me'],
 }
 
 export const faqs = [
   {
     q: 'I’m not good with technology. Is that a problem?',
-    a: 'Not at all. That’s exactly who this is for. I handle the setup, the design and the technical side. You tell me about your business and let me know what you think of the preview.',
+    a: 'No. I handle the design and the technical setup. Your part is telling me about your business and giving feedback on the preview.',
   },
   {
     q: 'What do you need from me?',
-    a: 'A short call, your logo if you have one, a few photos of your work, and the basics: services, service area, hours and how customers should reach you. No photos or logo yet? We’ll work around it.',
+    a: 'A short call, your logo if you have one, a few photos of your work, and the basics: services, service area, hours and how customers should reach you. No photos or logo yet? I’ll work around it.',
   },
   {
     q: 'Do I need to buy a domain?',
@@ -211,7 +209,7 @@ export const faqs = [
   },
   {
     q: 'How long does it take?',
-    a: 'Most Starter sites go live 5–10 days after I have your content. The quicker the details come in, the quicker you’re online.',
+    a: 'A Starter site usually goes live 5–10 days after you send your content. The sooner I have your details and photos, the sooner you’re online.',
   },
   {
     q: 'What if I want changes after launch?',
@@ -231,7 +229,7 @@ export const faqs = [
   },
   {
     q: 'Do I have to sign up for the Care Plan?',
-    a: 'No, it’s optional. Most owners keep it because it means never thinking about hosting, security or updates, but the choice is yours.',
+    a: 'No, it’s optional. It’s there if you’d rather not deal with hosting, security or updates yourself.',
   },
 ]
 

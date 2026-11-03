@@ -1,7 +1,5 @@
 import { steps } from '../data/site'
-import { Note, PencilLine, Reveal, SectionHead } from './ui'
-
-const notes = ['20 minutes, no pressure', 'words included', 'the fun part', 'about a week in']
+import { PencilLine, Reveal, SectionHead } from './ui'
 
 export default function Process() {
   return (
@@ -13,10 +11,10 @@ export default function Process() {
           align="center"
           title={
             <>
-              First call to live site <span className="marker">in about a week.</span>
+              Four steps to a <span className="marker">live site.</span>
             </>
           }
-          intro="You bring what you know about your business. I handle everything else, and keep you in the loop without the tech talk."
+          intro="You tell me about your business. I handle the design, the writing and the technical setup, and keep you updated in plain English."
         />
 
         <div className="relative mt-16 sm:mt-24">
@@ -34,10 +32,7 @@ export default function Process() {
                 <span className="display relative mx-auto grid size-16 place-items-center rounded-full border-[1.5px] border-navy bg-paper text-2xl">
                   {i + 1}
                 </span>
-                <Note arrow="down" rotate={i % 2 ? 4 : -4} delay={0.6 + i * 0.15} className="mt-2 justify-center">
-                  {notes[i]}
-                </Note>
-                <h3 className="display mt-3 text-3xl">{step.title}</h3>
+                <h3 className="display mt-6 text-3xl">{step.title}</h3>
                 <p className="mx-auto mt-3 max-w-xs leading-relaxed text-slate">{step.text}</p>
               </Reveal>
             ))}

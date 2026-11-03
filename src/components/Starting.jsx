@@ -24,7 +24,7 @@ export default function Starting() {
                 Where are you <span className="marker">starting from?</span>
               </>
             }
-            intro="Every business starts somewhere different. Pick the one that sounds like you, and I’ll tell you how we’d get you online."
+            intro="Pick the one that fits, and I’ll show you where I’d begin."
           />
         </div>
 
@@ -50,7 +50,7 @@ export default function Starting() {
                       strokeWidth={3}
                     />
                     <span className="display text-[clamp(1.6rem,3.4vw,2.5rem)]">{point.label}</span>
-                    <span className={`hand text-xl ${on ? 'text-marigold-soft' : 'text-pencil'}`}>— {point.note}</span>
+                    <span className={`hand text-xl ${on ? 'text-marigold-soft' : 'text-pencil'}`}>{point.note}</span>
                   </button>
                 </li>
               )
