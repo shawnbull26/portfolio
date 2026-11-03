@@ -17,6 +17,9 @@ export const brand = {
 // The public address once deployed. Used for the canonical link and social preview tags.
 export const siteUrl = 'https://design-by-dae.netlify.app'
 
+// The footer year. Set once here (not from the visitor's clock) so the prerendered page and the browser always match.
+export const copyrightYear = 2026
+
 export const nav = [
   { label: 'What you get', href: '#included' },
   { label: 'Samples', href: '#samples' },

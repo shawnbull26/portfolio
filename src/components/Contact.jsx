@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, m } from 'framer-motion'
 import { ArrowRight, ArrowUp, CalendarDays, Mail, Phone } from 'lucide-react'
-import { brand, projectTypes } from '../data/site'
+import { brand, copyrightYear, projectTypes } from '../data/site'
 import { Label, Reveal, Wordmark, calm } from './ui'
 
 const encode = (data) => new URLSearchParams(data).toString()
@@ -42,7 +42,7 @@ export default function Contact() {
           <p className="flex flex-wrap items-center gap-x-4 gap-y-2">
             <Wordmark inverted className="text-paper" />
             <span>
-              © {new Date().getFullYear()} {brand.owner} · {brand.location}
+              © {copyrightYear} {brand.owner} · {brand.location}
             </span>
           </p>
           <div className="flex items-center gap-8">

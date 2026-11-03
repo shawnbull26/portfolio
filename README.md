@@ -13,7 +13,7 @@ npm run dev
 
 ## Where things live
 
-- `src/data/site.js`: all copy (brand, reasons, what's included, sample sites, process, pricing, about, FAQ), plus `siteUrl` (canonical and social tags) and `brand.photo` (set a path to replace the About monogram).
+- `src/data/site.js`: all copy (brand, hero, starting points, what's included, sample sites, process, pricing, about, FAQ, testimonials), plus `siteUrl` (canonical and social tags), `copyrightYear` (footer) and `brand.photo` (set a path to replace the About monogram).
 - `src/components/`: one file per section (Hero, Starting, Included, Samples, Testimonials, Process, Pricing, About, Faq, Contact) plus `ui.jsx` for shared pieces (wordmark, buttons, section headings, reveals).
 - Brand colors and fonts live in `src/index.css` (`@theme`): drafting-paper backgrounds with a `blueprint` grid, `navy`, `pencil` blue and `marigold`; Archivo for headlines (the `display` utility), Inter Tight for body text, JetBrains Mono for `label`s and the typed word, and Caveat for handwritten notes (`hand`, and the `Note` component).
 - `public/work/`: sample-site screenshots (WebP).
@@ -27,6 +27,7 @@ npm run dev
 - **Testimonials:** add `{ quote, name, business }` entries to `testimonials`; the section appears automatically.
 - **Photo:** set `brand.photo` to a portrait in `public/`.
 - **Domain:** update `siteUrl` when you move to a custom domain.
+- **New year:** update `copyrightYear`.
 
 ## Motion
 
@@ -34,4 +35,4 @@ The hero animates in CSS (`index.css`), so the prerendered page animates before 
 
 ## Deploy
 
-Netlify reads `netlify.toml`. After the first deploy, turn on form detection (Forms → Enable form detection) and redeploy so the contact form (`project`) starts collecting submissions.
+Pushing to `main` on GitHub deploys to Netlify automatically. `netlify.toml` sets the build, cache headers and basic security headers. Form detection is on for the contact form (`project`); add your email under Forms → Form notifications so new messages reach you.

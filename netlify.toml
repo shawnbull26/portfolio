@@ -6,6 +6,15 @@
   # Tailwind CSS 4 and Vite 6 need a current Node release.
   NODE_VERSION = "22"
 
+# Basic security headers for every page.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+
 [[headers]]
   for = "/assets/*"
   [headers.values]

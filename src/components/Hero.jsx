@@ -26,7 +26,7 @@ export default function Hero() {
             <Label className="text-pencil">Web design for local businesses</Label>
           </div>
 
-          <h1 className="display mt-5 text-[clamp(2.9rem,6.4vw,5.6rem)]">
+          <h1 className="display mt-5 text-[clamp(2.9rem,6.4vw,5.6rem)]" aria-label="Let’s put your local business online.">
             <span className="line-mask">
               <span style={{ '--d': '0.1s' }}>Let’s put your</span>
             </span>{' '}
