@@ -20,7 +20,7 @@ export default function Pricing() {
                 Clear prices. <span className="marker">No surprises.</span>
               </>
             }
-            intro="A fixed price, agreed before any work starts. No hourly billing, and no extra charges you didn’t agree to."
+            intro="Your package has a fixed price, agreed before any work starts. Anything outside it is quoted first, or billed at $75/hour only if you approve it."
           />
           <Reveal delay={0.15} className="max-w-sm rounded-2xl border-[1.5px] border-dashed border-pencil/50 p-5">
             <p className="label flex items-center gap-2 text-pencil">

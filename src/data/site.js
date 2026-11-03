@@ -180,7 +180,7 @@ export const pricing = {
     price: '$69',
     text: 'Hosting, security updates, backups and speed checks, plus up to 30–45 minutes of small changes each month, like new photos, hours or prices.',
   },
-  terms: '50% to start and 50% when your site is ready to launch. The Care Plan is optional. Extra pages, a logo refresh or rush delivery can be added for a set price.',
+  terms: '50% to start and 50% when your site is ready to launch. The Care Plan is optional: without it, you host the site yourself and I hand off all the files and logins. Extra pages, a logo refresh or rush delivery are quoted up front.',
 }
 
 const { spotsLeft, spotsTotal } = pricing.founding
@@ -229,7 +229,7 @@ export const faqs = [
   },
   {
     q: 'Do I have to sign up for the Care Plan?',
-    a: 'No, it’s optional. It’s there if you’d rather not deal with hosting, security or updates yourself.',
+    a: 'No, it’s optional. Without it, you host the site yourself and I hand off all the files and logins at launch. With it, I take care of hosting, security and updates for you.',
   },
 ]
 
