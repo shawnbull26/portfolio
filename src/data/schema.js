@@ -12,7 +12,7 @@ export const businessSchema = {
   areaServed: { '@type': 'AdministrativeArea', name: brand.location },
   priceRange: `From ${pricing.packages[0].price}`,
   founder: { '@type': 'Person', name: brand.owner },
-  ...(brand.phone && { telephone: brand.phone }),
+  ...(brand.phone && { telephone: `+1-${brand.phone.replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')}` }),
   ...(brand.email && { email: brand.email }),
   makesOffer: pricing.packages.map((pkg) => ({
     '@type': 'Offer',

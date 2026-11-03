@@ -22,7 +22,7 @@ npm run dev
 
 ## Common edits (all in `src/data/site.js`)
 
-- **Contact details:** set `brand.phone`, `brand.email` and `brand.booking` (a Cal.com or Calendly link). Each appears in the contact section and in the business info Google reads, only once set.
+- **Contact details:** `brand.phone` and `brand.email` show in the contact section, the footer, the privacy page and the business info Google reads. Set `brand.booking` (a Cal.com or Calendly link) to add a booking button; leave any of them `null` to hide it.
 - **Founding spots:** lower `pricing.founding.spotsLeft` as clients sign on.
 - **Testimonials:** add `{ quote, name, business }` entries to `testimonials`; the section appears automatically.
 - **Photo:** set `brand.photo` to a portrait in `public/`.

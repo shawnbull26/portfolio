@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, m } from 'framer-motion'
 import { ArrowRight, ArrowUp, CalendarDays, Mail, Phone } from 'lucide-react'
-import { brand, copyrightYear, projectTypes } from '../data/site'
+import { brand, copyrightYear, projectTypes, telHref } from '../data/site'
 import { Label, Reveal, Wordmark, calm } from './ui'
 
 const encode = (data) => new URLSearchParams(data).toString()
@@ -45,7 +45,17 @@ export default function Contact() {
               © {copyrightYear} {brand.owner} · {brand.location}
             </span>
           </p>
-          <div className="flex items-center gap-8">
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
+            {brand.email && (
+              <a href={`mailto:${brand.email}`} className="transition-colors duration-300 hover:text-paper">
+                {brand.email}
+              </a>
+            )}
+            {brand.phone && (
+              <a href={telHref(brand.phone)} className="transition-colors duration-300 hover:text-paper">
+                {brand.phone}
+              </a>
+            )}
             <a href="/privacy/" className="transition-colors duration-300 hover:text-paper">
               Privacy
             </a>
@@ -67,7 +77,7 @@ export default function Contact() {
 function ContactOptions() {
   const options = [
     brand.booking && { icon: CalendarDays, label: 'Book a free 20-minute call', href: brand.booking, external: true },
-    brand.phone && { icon: Phone, label: `Call or text ${brand.phone}`, href: `tel:${brand.phone.replace(/[^\d+]/g, '')}` },
+    brand.phone && { icon: Phone, label: `Call or text ${brand.phone}`, href: telHref(brand.phone) },
     brand.email && { icon: Mail, label: brand.email, href: `mailto:${brand.email}` },
   ].filter(Boolean)
   if (!options.length) return null

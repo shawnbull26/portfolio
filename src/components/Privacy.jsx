@@ -24,7 +24,7 @@ const sections = [
   {
     title: 'Keeping or deleting your information',
     body: [
-      'I keep messages for as long as I need them to respond and for my business records. If you’d like me to delete what you’ve sent, just ask through the contact form and I’ll take care of it.',
+      `I keep messages for as long as I need them to respond and for my business records. If you’d like me to delete what you’ve sent, email ${brand.email} and I’ll take care of it.`,
     ],
   },
 ]
@@ -61,7 +61,11 @@ export default function Privacy() {
           </section>
         ))}
         <p className="mt-16 border-t border-navy/12 pt-10 leading-relaxed text-slate">
-          Questions about this policy? <a href="/#contact" className="text-navy underline decoration-marigold underline-offset-4">Send me a message</a>.
+          Questions about this policy? Email{' '}
+          <a href={`mailto:${brand.email}`} className="text-navy underline decoration-marigold underline-offset-4">
+            {brand.email}
+          </a>
+          .
         </p>
       </main>
     </div>

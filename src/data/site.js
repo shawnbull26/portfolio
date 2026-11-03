@@ -7,10 +7,10 @@ export const brand = {
   location: 'Northern Virginia',
   // Drop a portrait in public/ (about 800×1000) and set its path here to replace the monogram card.
   photo: null,
-  // Contact details stay hidden until set, e.g. phone: '(571) 555-0100', email: 'hello@designbydae.com',
-  // booking: 'https://cal.com/designbydae/intro'. Each one then appears in the contact section and the site's business info.
-  phone: null,
-  email: null,
+  // Contact details appear in the contact section, the footer and the site's business info. Leave one as
+  // null to hide it, e.g. booking: 'https://cal.com/designbydae/intro'.
+  phone: '(571) 485-9583',
+  email: 'designbydaeco@gmail.com',
   booking: null,
 }
 
@@ -185,6 +185,9 @@ export const pricing = {
   },
   terms: '50% to start and 50% when your site is ready to launch. The Care Plan is optional: without it, you host the site yourself and I hand off all the files and logins. Extra pages, a logo refresh or rush delivery are quoted up front.',
 }
+
+// A tel: link for a US number, e.g. '(571) 485-9583' becomes 'tel:+15714859583'.
+export const telHref = (phone) => `tel:+1${phone.replace(/\D/g, '').replace(/^1(?=\d{10}$)/, '')}`
 
 const { spotsLeft, spotsTotal } = pricing.founding
 export const spotsText = `${spotsLeft} of ${spotsTotal} spots left`
