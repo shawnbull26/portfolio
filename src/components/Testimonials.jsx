@@ -12,7 +12,7 @@ export default function Testimonials() {
           eyebrow="Kind words"
           title={
             <>
-              From the owners <span className="text-fog">I’ve built for.</span>
+              From the owners <span className="text-ink-soft">I’ve built for.</span>
             </>
           }
         />
@@ -23,15 +23,15 @@ export default function Testimonials() {
               key={t.name}
               delay={(i % 3) * 0.08}
               y={24}
-              className="flex flex-col rounded-3xl border border-white/8 bg-night-raised p-8"
+              className="flex flex-col rounded-3xl border border-ink/10 bg-white p-8"
             >
-              <span aria-hidden="true" className="display text-6xl leading-none text-signal">
+              <span aria-hidden="true" className="display text-6xl leading-none text-tangerine-deep">
                 “
               </span>
               <blockquote className="mt-4 text-lg leading-relaxed">{t.quote}</blockquote>
               <p className="mt-auto pt-8 text-sm">
                 <span className="font-semibold">{t.name}</span>
-                <span className="text-fog"> · {t.business}</span>
+                <span className="text-ink-soft"> · {t.business}</span>
               </p>
             </Reveal>
           ))}

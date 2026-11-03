@@ -17,7 +17,6 @@ export default function App() {
   return (
     <LazyMotion features={loadFeatures} strict>
       <MotionConfig reducedMotion="user">
-        <div aria-hidden="true" className="grain" />
         <Nav />
         <main id="main">
           <Hero />

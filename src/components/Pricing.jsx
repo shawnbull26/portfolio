@@ -1,6 +1,6 @@
 import { Check } from 'lucide-react'
 import { pricing, spotsText } from '../data/site'
-import { Reveal, SectionHead } from './ui'
+import { Reveal, SectionHead, Sticker } from './ui'
 
 // Package buttons tell the contact form which option to preselect.
 const choosePackage = (name) => window.dispatchEvent(new CustomEvent('choose-package', { detail: name }))
@@ -9,34 +9,35 @@ export default function Pricing() {
   const [starter, growth] = pricing.packages
 
   return (
-    <section id="pricing" aria-labelledby="pricing-title" className="relative py-28 sm:py-36">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+    <section id="pricing" aria-labelledby="pricing-title" className="relative py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <SectionHead
           id="pricing-title"
+          align="center"
           eyebrow="Pricing"
           title={
             <>
-              Clear prices. <span className="text-fog">No surprise invoices.</span>
+              Clear prices. <span className="text-tangerine-deep">No surprises.</span>
             </>
           }
-          intro="One extra job usually pays for the site. You'll know exactly what you're getting and what it costs before we start."
+          intro="One extra job usually pays for the site. You’ll know exactly what you’re getting and what it costs before we start."
         />
 
         <Reveal
           delay={0.1}
-          className="mt-14 flex flex-col gap-3 rounded-2xl border border-signal/30 bg-signal/8 p-5 sm:mt-16 sm:flex-row sm:items-center sm:gap-8 sm:p-6"
+          className="mx-auto mt-12 flex max-w-3xl flex-col items-center gap-3 rounded-[1.75rem] bg-ink p-5 text-center text-cream sm:mt-14 sm:flex-row sm:gap-6 sm:p-6 sm:text-left"
         >
-          <p className="flex shrink-0 items-center gap-2.5 text-xs font-semibold tracking-[0.18em] text-signal uppercase">
-            <span aria-hidden="true" className="relative flex size-1.5">
-              <span className="breathe absolute inset-0 rounded-full bg-signal" />
-              <span className="relative size-1.5 rounded-full bg-signal" />
+          <span className="sticker shrink-0 -rotate-3 bg-sunshine text-ink">
+            <span aria-hidden="true" className="relative flex size-2">
+              <span className="ping absolute inset-0 rounded-full bg-tangerine" />
+              <span className="relative size-2 rounded-full bg-tangerine" />
             </span>
             {spotsText}
-          </p>
-          <p className="leading-relaxed text-cloud/85">{pricing.founding.text}</p>
+          </span>
+          <p className="text-[0.95rem] leading-relaxed text-cream/85">{pricing.founding.text}</p>
         </Reveal>
 
-        <div className="mt-6 grid gap-5 lg:grid-cols-12">
+        <div className="mt-8 grid gap-5 lg:grid-cols-12">
           <Reveal y={36} className="lg:col-span-7">
             <Package pkg={starter} featured />
           </Reveal>
@@ -45,21 +46,21 @@ export default function Pricing() {
           </Reveal>
 
           <Reveal y={24} delay={0.15} className="lg:col-span-12">
-            <div className="grid gap-6 rounded-3xl border border-white/8 bg-night-raised p-7 sm:p-10 md:grid-cols-12 md:items-center">
+            <div className="grid gap-6 rounded-[2rem] bg-sunshine p-7 sm:p-10 md:grid-cols-12 md:items-center">
               <div className="md:col-span-3">
-                <p className="text-xs font-semibold tracking-[0.18em] text-fog uppercase">Optional, recommended</p>
-                <h3 className="display mt-3 text-3xl">{pricing.care.name}</h3>
+                <p className="text-xs font-semibold tracking-[0.14em] text-ink/70 uppercase">Optional, recommended</p>
+                <h3 className="display mt-2 text-5xl">{pricing.care.name}</h3>
               </div>
-              <p className="leading-relaxed text-fog md:col-span-6">{pricing.care.text}</p>
-              <p className="display text-5xl md:col-span-3 md:text-right">
-                {pricing.care.price}
-                <span className="font-sans text-base font-normal tracking-normal text-fog [font-stretch:100%]"> / month</span>
+              <p className="leading-relaxed text-ink/80 md:col-span-6">{pricing.care.text}</p>
+              <p className="flex items-baseline gap-2 md:col-span-3 md:justify-end">
+                <span className="display text-6xl">{pricing.care.price}</span>
+                <span className="text-base text-ink/70">/ month</span>
               </p>
             </div>
           </Reveal>
         </div>
 
-        <Reveal delay={0.1} as="p" className="mt-8 max-w-2xl text-[0.95rem] leading-relaxed text-fog">
+        <Reveal delay={0.1} as="p" className="mx-auto mt-8 max-w-2xl text-center text-[0.95rem] leading-relaxed text-ink-soft">
           {pricing.terms}
         </Reveal>
       </div>
@@ -68,29 +69,23 @@ export default function Pricing() {
 }
 
 function Package({ pkg, featured = false }) {
-  const tone = featured ? 'bg-signal text-night' : 'border border-white/8 bg-night-raised text-cloud'
-  const muted = featured ? 'text-night/70' : 'text-fog'
+  const tone = featured ? 'bg-tangerine' : 'bg-white ring-2 ring-ink/8'
+  const muted = featured ? 'text-ink/75' : 'text-ink-soft'
 
   return (
     <article
       aria-labelledby={`${pkg.id}-title`}
-      className={`relative isolate flex h-full flex-col overflow-hidden rounded-3xl p-7 sm:p-10 ${tone}`}
+      className={`relative flex h-full flex-col rounded-[2rem] p-7 text-ink sm:p-10 ${tone}`}
     >
-      {featured && (
-        <div
-          aria-hidden="true"
-          className="breathe absolute -top-1/2 -right-1/3 -z-10 size-[36rem] rounded-full bg-[radial-gradient(closest-side,rgba(255,255,255,0.35),transparent)]"
-        />
+      {pkg.badge && (
+        <Sticker tone="ink" rotate={6} delay={0.3} className="absolute -top-3 right-8">
+          {pkg.badge}
+        </Sticker>
       )}
 
-      <div className="flex flex-wrap items-start justify-between gap-4">
-        <h3 id={`${pkg.id}-title`} className="display text-3xl sm:text-4xl">
-          {pkg.name}
-        </h3>
-        {pkg.badge && (
-          <span className="rounded-full bg-night px-3 py-1 text-xs font-semibold text-cloud">{pkg.badge}</span>
-        )}
-      </div>
+      <h3 id={`${pkg.id}-title`} className="display text-5xl sm:text-6xl">
+        {pkg.name}
+      </h3>
       <p className={`mt-4 max-w-sm leading-relaxed ${muted}`}>{pkg.tagline}</p>
 
       <div className="mt-8">
@@ -101,20 +96,24 @@ function Package({ pkg, featured = false }) {
             {pkg.regular}
           </s>
           <span aria-hidden="true"> · </span>
-          <span className={`font-semibold ${featured ? 'text-night' : 'text-signal'}`}>Founding-client rate</span>
+          <span className="font-semibold text-ink">Founding-client rate</span>
         </p>
-        <p className="mt-3 flex flex-wrap items-baseline gap-x-2">
+        <p className="mt-2 flex flex-wrap items-baseline gap-x-2">
           {pkg.from && <span className={`text-base ${muted}`}>from</span>}
-          <span className={`display ${featured ? 'text-6xl sm:text-7xl' : 'text-5xl sm:text-6xl'}`}>{pkg.price}</span>
+          <span className={`display ${featured ? 'text-8xl sm:text-9xl' : 'text-7xl sm:text-8xl'}`}>{pkg.price}</span>
           <span className={`text-base whitespace-nowrap ${muted}`}>one-time</span>
         </p>
       </div>
 
-      <ul className={`mt-8 space-y-3 border-t pt-8 ${featured ? 'border-night/15' : 'border-white/8'}`}>
+      <ul className={`mt-8 space-y-3 border-t-2 pt-8 ${featured ? 'border-ink/15' : 'border-ink/8'}`}>
         {pkg.features.map((feature) => (
           <li key={feature} className="flex gap-3 text-[0.95rem] leading-relaxed">
-            <Check aria-hidden="true" className={`mt-1 size-4 shrink-0 ${featured ? 'text-night' : 'text-signal'}`} />
-            <span className={featured ? 'text-night/85' : 'text-cloud/85'}>{feature}</span>
+            <span
+              className={`mt-0.5 grid size-5 shrink-0 place-items-center rounded-full ${featured ? 'bg-ink text-tangerine' : 'bg-sunshine text-ink'}`}
+            >
+              <Check aria-hidden="true" className="size-3" strokeWidth={3} />
+            </span>
+            <span className={featured ? 'text-ink/90' : 'text-ink-soft'}>{feature}</span>
           </li>
         ))}
       </ul>
@@ -123,8 +122,8 @@ function Package({ pkg, featured = false }) {
         <a
           href="#contact"
           onClick={() => choosePackage(pkg.name)}
-          className={`inline-flex items-center gap-2 rounded-full px-6 py-3 text-[0.95rem] font-semibold transition-colors duration-300 ${
-            featured ? 'bg-night text-cloud hover:bg-black' : 'bg-cloud text-night hover:bg-white'
+          className={`inline-flex items-center gap-2 rounded-full px-6 py-3 text-[0.95rem] font-semibold transition-transform duration-300 ease-(--ease-pop) hover:-translate-y-0.5 ${
+            featured ? 'bg-ink text-cream' : 'bg-tangerine text-ink'
           }`}
         >
           Get started

@@ -2,29 +2,30 @@ import { useEffect, useRef, useState } from 'react'
 import { m, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { samples } from '../data/site'
-import { Reveal, SectionHead } from './ui'
+import { Reveal, SectionHead, Sticker } from './ui'
 
-// The one light section in the middle of the page, so the screenshots read clearly.
+const tones = { apex: 'bg-sky', lumen: 'bg-bubblegum' }
+
 export default function Samples() {
   return (
-    <section id="samples" aria-labelledby="samples-title" className="relative bg-cloud py-28 text-night sm:py-36">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+    <section id="samples" aria-labelledby="samples-title" className="relative py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <SectionHead
           id="samples-title"
-          tone="light"
+          align="center"
           eyebrow="Sample sites"
           title={
             <>
-              See what yours <span className="text-signal-deep">could look like.</span>
+              See what yours <span className="text-tangerine-deep">could look like.</span>
             </>
           }
-          intro="Two sample sites I designed and built for local service businesses. Each one has its own look, and both are made to turn visitors into calls."
+          intro="Two sample sites I designed and built for local service businesses. Each has its own personality, and both are made to turn visitors into calls."
         />
 
-        <div className="mt-16 grid gap-6 sm:mt-20 lg:grid-cols-2">
+        <div className="mt-14 grid gap-6 sm:mt-20 lg:grid-cols-2">
           {samples.map((sample, i) => (
             <Reveal key={sample.id} delay={i * 0.12} y={40} amount={0.2}>
-              <SampleCard sample={sample} />
+              <SampleCard sample={sample} tilt={i === 0 ? -6 : 5} />
             </Reveal>
           ))}
         </div>
@@ -33,7 +34,7 @@ export default function Samples() {
   )
 }
 
-function SampleCard({ sample }) {
+function SampleCard({ sample, tilt }) {
   const ref = useRef(null)
   const reduce = useReducedMotion()
   const narrow = useNarrow()
@@ -48,15 +49,18 @@ function SampleCard({ sample }) {
       href={sample.url}
       target="_blank"
       rel="noreferrer"
-      className="group block rounded-[2rem] bg-cloud-deep p-5 transition-colors duration-500 hover:bg-[#dedbd3] sm:p-8"
+      className={`group relative block rounded-[2.25rem] p-5 transition-transform duration-500 ease-(--ease-pop) hover:-translate-y-1.5 sm:p-8 ${tones[sample.id]}`}
     >
+      <Sticker tone="ink" rotate={tilt} delay={0.3} className="absolute -top-3 left-6 z-10">
+        Sample site
+      </Sticker>
       <div className="relative pr-[10%] pb-[12%]">
-        <div className="overflow-hidden rounded-xl bg-white shadow-[0_30px_70px_-35px_rgba(0,0,0,0.45)] transition-transform duration-700 ease-(--ease-calm) group-hover:-translate-y-1.5">
+        <div className="overflow-hidden rounded-xl bg-white shadow-[0_30px_60px_-30px_rgb(23_19_15/0.5)] transition-transform duration-700 ease-(--ease-pop) group-hover:-rotate-1">
           <div className="flex h-7 items-center gap-1.5 border-b border-black/5 bg-[#f3f3f1] px-3">
-            <span className="size-2 rounded-full bg-black/12" />
-            <span className="size-2 rounded-full bg-black/12" />
-            <span className="size-2 rounded-full bg-black/12" />
-            <span className="mx-auto hidden rounded-full bg-black/5 px-6 py-0.5 text-[0.65rem] text-black/45 sm:block">
+            <span className="size-2 rounded-full bg-[#ff6159]" />
+            <span className="size-2 rounded-full bg-[#ffbd2e]" />
+            <span className="size-2 rounded-full bg-[#28c941]" />
+            <span className="mx-auto hidden rounded-full bg-black/5 px-6 py-0.5 text-[0.65rem] text-black/50 sm:block">
               {host}
             </span>
           </div>
@@ -74,7 +78,7 @@ function SampleCard({ sample }) {
         </div>
         <m.div
           style={reduce ? undefined : { y: phoneY }}
-          className="absolute right-0 bottom-0 w-[24%] overflow-hidden rounded-[1.1rem] border-[4px] border-night bg-night shadow-[0_25px_50px_-20px_rgba(0,0,0,0.55)] sm:rounded-[1.5rem] sm:border-[5px]"
+          className="absolute right-0 bottom-0 w-[24%] overflow-hidden rounded-[1.1rem] border-[4px] border-ink bg-ink shadow-[0_25px_50px_-20px_rgb(23_19_15/0.55)] sm:rounded-[1.5rem] sm:border-[5px]"
         >
           <img
             src={sample.images.mobile}
@@ -90,23 +94,19 @@ function SampleCard({ sample }) {
         </m.div>
       </div>
 
-      <div className="mt-8 flex items-start justify-between gap-6">
+      <div className="mt-6 flex items-end justify-between gap-6 rounded-[1.5rem] bg-white/70 p-5 sm:p-6">
         <div>
-          <p className="text-xs font-semibold tracking-[0.18em] text-smoke uppercase">{sample.industry}</p>
-          <h3 className="display mt-3 text-3xl sm:text-4xl">{sample.name}</h3>
-          <p className="mt-3 max-w-sm leading-relaxed text-smoke">{sample.note}</p>
+          <p className="text-xs font-semibold tracking-[0.14em] text-ink-soft uppercase">{sample.industry}</p>
+          <h3 className="display mt-2 text-4xl sm:text-5xl">{sample.name}</h3>
+          <p className="mt-2 max-w-sm leading-relaxed text-ink-soft">{sample.note}</p>
+          <p className="mt-3 text-xs text-ink-soft">
+            Concept site, fictional business<span className="sr-only"> (opens the live sample in a new tab)</span>
+          </p>
         </div>
-        <span className="grid size-12 shrink-0 place-items-center rounded-full bg-night text-cloud transition-colors duration-500 group-hover:bg-signal group-hover:text-night">
-          <ArrowUpRight
-            aria-hidden="true"
-            className="size-5 transition-transform duration-500 ease-(--ease-calm) group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-          />
+        <span className="grid size-12 shrink-0 place-items-center rounded-full bg-tangerine text-ink transition-transform duration-500 ease-(--ease-pop) group-hover:scale-110 group-hover:rotate-45">
+          <ArrowUpRight aria-hidden="true" className="size-5" />
         </span>
       </div>
-      <p className="mt-6 text-sm font-medium text-night">
-        View the live sample <span className="sr-only">(opens in a new tab)</span>
-        <span className="ml-2 text-smoke">· Concept site, fictional business</span>
-      </p>
     </a>
   )
 }

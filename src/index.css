@@ -4,28 +4,42 @@
   --font-sans: 'Inter Tight Variable', ui-sans-serif, system-ui, sans-serif;
   --font-display: 'Archivo Variable', 'Inter Tight Variable', ui-sans-serif, system-ui, sans-serif;
 
-  /* Design by Dae: near-black night, warm off-white, one signal-orange accent. */
-  --color-night: #0c0c0e;
-  --color-night-raised: #141417;
-  --color-night-card: #1b1b1f;
-  --color-cloud: #f3f2ee;
-  --color-cloud-deep: #e7e5df;
-  --color-fog: #a6a5a0;
-  --color-smoke: #5c5b56;
-  --color-signal: #ff6a2b;
-  --color-signal-soft: #ff9a6b;
-  --color-signal-deep: #b23a0a;
+  /* Design by Dae: warm cream, tangerine, and three sunny accents. */
+  --color-cream: #fff6ee;
+  --color-blush: #fbe8dc;
+  --color-ink: #17130f;
+  --color-ink-soft: #594f47;
+  --color-tangerine: #ff5a1f;
+  --color-tangerine-deep: #e8470b;
+  --color-sunshine: #ffc93c;
+  --color-sky: #8fd3ff;
+  --color-bubblegum: #ffb0cf;
 
   --ease-calm: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-pop: cubic-bezier(0.34, 1.4, 0.64, 1);
 }
 
-/* The brand's headline voice: heavy, slightly extended, tightly tracked. */
+/* The headline voice: chunky, condensed, uppercase. */
 @utility display {
   font-family: var(--font-display);
   font-weight: 800;
-  font-stretch: 115%;
-  letter-spacing: -0.045em;
-  line-height: 0.95;
+  font-stretch: 72%;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 0.88;
+}
+
+/* Little tilted labels that sit on top of headlines and cards. */
+@utility sticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 999px;
+  padding: 0.45rem 0.95rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px -8px rgb(23 19 15 / 0.45);
 }
 
 @layer base {
@@ -34,7 +48,7 @@
     -webkit-tap-highlight-color: transparent;
   }
   body {
-    @apply bg-night font-sans text-cloud antialiased;
+    @apply bg-cream font-sans text-ink antialiased;
     text-rendering: optimizeLegibility;
   }
   h1,
@@ -46,33 +60,14 @@
     text-wrap: pretty;
   }
   section[id] {
-    scroll-margin-top: 4.5rem;
+    scroll-margin-top: 5rem;
   }
   ::selection {
-    @apply bg-signal text-night;
+    @apply bg-sunshine text-ink;
   }
   :focus-visible {
-    @apply rounded-sm outline-2 outline-offset-4 outline-signal;
+    @apply rounded-sm outline-2 outline-offset-4 outline-ink;
   }
-}
-
-/* A faint film grain over the whole page so the dark never looks flat. */
-.grain {
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* A fine blueprint grid that fades out from the center. */
-.grid-lines {
-  background-image:
-    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
-  background-size: 88px 88px;
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent);
 }
 
 /*
@@ -81,7 +76,7 @@
 */
 @keyframes line-up {
   from {
-    transform: translateY(110%);
+    transform: translateY(105%);
   }
 }
 @keyframes fade-up {
@@ -95,38 +90,24 @@
     opacity: 0;
   }
 }
-@keyframes draw-x {
+@keyframes pop-in {
   from {
-    transform: scaleX(0);
+    opacity: 0;
+    scale: 0.6;
   }
 }
-@keyframes drift-a {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(-6%, 5%, 0) scale(1.1);
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
   }
 }
-@keyframes drift-b {
+@keyframes bob {
   0%,
   100% {
-    transform: translate3d(0, 0, 0) scale(1.05);
+    translate: 0 0;
   }
   50% {
-    transform: translate3d(7%, -5%, 0) scale(0.95);
-  }
-}
-@keyframes breathe {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0.55;
-  }
-  50% {
-    transform: scale(1.08);
-    opacity: 0.9;
+    translate: 0 -6px;
   }
 }
 @keyframes marquee {
@@ -134,43 +115,54 @@
     transform: translateX(-50%);
   }
 }
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
 
-/* Each headline line rises out of its own mask. Padding keeps descenders unclipped. */
+/* Each headline line rises out of its own mask. */
 .line-mask {
   display: block;
   overflow: hidden;
-  padding: 0 0.05em 0.08em 0;
-  margin-bottom: -0.08em;
+  padding-bottom: 0.04em;
 }
 .line-mask > span {
   display: block;
-  animation: line-up 1.2s var(--ease-calm) var(--d, 0s) both;
+  animation: line-up 1s var(--ease-calm) var(--d, 0s) both;
 }
 .anim-fade-up {
-  animation: fade-up 1.1s var(--ease-calm) var(--d, 0s) both;
+  animation: fade-up 1s var(--ease-calm) var(--d, 0s) both;
 }
 .anim-fade-in {
-  animation: fade-in 1.4s ease-out var(--d, 0s) both;
+  animation: fade-in 1.2s ease-out var(--d, 0s) both;
 }
-.anim-draw-x {
-  transform-origin: left;
-  animation: draw-x 1.6s var(--ease-calm) var(--d, 0s) both;
+/* Stickers pop in with a little overshoot, then keep a gentle bob. */
+.anim-pop {
+  animation:
+    pop-in 0.7s var(--ease-pop) var(--d, 0s) both,
+    bob 5s ease-in-out calc(var(--d, 0s) + 0.7s) infinite;
 }
-.drift-a {
-  animation: drift-a 24s ease-in-out infinite;
-}
-.drift-b {
-  animation: drift-b 30s ease-in-out infinite;
-}
-.breathe {
-  animation: breathe 6s ease-in-out infinite;
+/* SVG loops draw themselves on; paths need pathLength="1". */
+.anim-draw {
+  stroke-dasharray: 1;
+  animation: draw 2.2s var(--ease-calm) var(--d, 0s) both;
 }
 .marquee {
-  animation: marquee 38s linear infinite;
+  animation: marquee 34s linear infinite;
 }
 .marquee:hover,
 .marquee.is-paused {
   animation-play-state: paused;
+}
+.ping {
+  animation: breathe 2.4s ease-out infinite;
 }
 
 .skip-intro header {
@@ -178,6 +170,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* The scroll-fill statement simply shows in full. */
+  .fill-text span {
+    color: var(--color-ink) !important;
+  }
   html {
     scroll-behavior: auto;
   }

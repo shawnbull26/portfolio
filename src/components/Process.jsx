@@ -1,45 +1,52 @@
-import { m } from 'framer-motion'
 import { steps } from '../data/site'
-import { Reveal, SectionHead, calm } from './ui'
+import { Reveal, SectionHead, Squiggle } from './ui'
+
+const badges = ['bg-sunshine', 'bg-sky', 'bg-bubblegum', 'bg-tangerine']
+const tilts = ['-rotate-6', 'rotate-3', '-rotate-3', 'rotate-6']
 
 export default function Process() {
   return (
-    <section id="process" aria-labelledby="process-title" className="relative py-28 sm:py-36">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+    <section id="process" aria-labelledby="process-title" className="relative overflow-hidden bg-ink py-24 text-cream sm:py-32">
+      <Squiggle
+        className="absolute -top-10 -right-24 w-[26rem] opacity-90 sm:-right-10"
+        d="M380 40 C 250 20, 150 90, 190 190 C 220 260, 320 240, 300 170 C 280 100, 150 130, 140 230 C 130 330, 230 380, 360 390"
+      />
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <SectionHead
           id="process-title"
-          eyebrow="How it works"
+          eyebrow={<span className="text-cream/70">How it works</span>}
           title={
             <>
-              From first call to live site <span className="text-fog">in about a week.</span>
+              First call to live site <span className="text-tangerine">in about a week.</span>
             </>
           }
-          intro="You bring what you know about your business. I handle everything else, and keep you in the loop without the tech talk."
+          intro={
+            <span className="text-cream/75">
+              You bring what you know about your business. I handle everything else, and keep you in the loop without the
+              tech talk.
+            </span>
+          }
         />
 
-        <div className="relative mt-16 sm:mt-24">
-          {/* A line that fills in orange as the steps scroll into view. */}
-          <div aria-hidden="true" className="absolute top-6 right-0 left-0 hidden h-px bg-white/10 lg:block">
-            <m.div
-              className="h-full origin-left bg-signal"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true, amount: 1 }}
-              transition={{ duration: 2.2, ease: calm, delay: 0.2 }}
-            />
-          </div>
-          <ol className="relative grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-            {steps.map((step, i) => (
-              <Reveal as="li" key={step.title} delay={0.15 + i * 0.15} y={20} className="relative">
-                <span className="relative grid size-12 place-items-center rounded-full border border-white/12 bg-night font-display text-sm font-bold text-signal">
-                  {i + 1}
-                </span>
-                <h3 className="mt-8 text-2xl font-semibold tracking-tight">{step.title}</h3>
-                <p className="mt-3 leading-relaxed text-fog">{step.text}</p>
-              </Reveal>
-            ))}
-          </ol>
-        </div>
+        <ol className="mt-16 grid gap-5 sm:mt-24 sm:grid-cols-2 lg:grid-cols-4">
+          {steps.map((step, i) => (
+            <Reveal
+              as="li"
+              key={step.title}
+              delay={0.1 + i * 0.12}
+              y={24}
+              className="group rounded-[2rem] bg-cream/6 p-7 ring-1 ring-cream/10 transition-colors duration-500 hover:bg-cream/10"
+            >
+              <span
+                className={`display grid size-16 place-items-center rounded-full text-4xl text-ink transition-transform duration-500 ease-(--ease-pop) group-hover:rotate-0 ${badges[i]} ${tilts[i]}`}
+              >
+                {i + 1}
+              </span>
+              <h3 className="display mt-8 text-4xl">{step.title}</h3>
+              <p className="mt-3 leading-relaxed text-cream/75">{step.text}</p>
+            </Reveal>
+          ))}
+        </ol>
       </div>
     </section>
   )

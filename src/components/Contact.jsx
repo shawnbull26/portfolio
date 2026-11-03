@@ -2,66 +2,71 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, m } from 'framer-motion'
 import { ArrowRight, ArrowUp, CalendarDays, Mail, Phone } from 'lucide-react'
 import { brand, projectTypes } from '../data/site'
-import { Eyebrow, Reveal, Wordmark, calm } from './ui'
+import { Eyebrow, Reveal, Squiggle, Sticker, Wordmark, calm } from './ui'
 
 const encode = (data) => new URLSearchParams(data).toString()
 
 export default function Contact() {
   return (
-    <div className="relative overflow-hidden bg-night text-cloud">
-      <div
-        aria-hidden="true"
-        className="drift-a pointer-events-none absolute -top-1/3 -right-1/4 size-[70vmax] rounded-full bg-[radial-gradient(closest-side,rgba(255,106,43,0.25),transparent)]"
-      />
+    <>
+      <div className="relative overflow-hidden bg-tangerine text-ink">
+        <Squiggle
+          className="absolute -right-24 -bottom-28 w-[30rem] opacity-90"
+          color="var(--color-sunshine)"
+          d="M20 380 C 60 250, 200 260, 210 170 C 220 90, 110 80, 110 160 C 110 250, 260 270, 380 200"
+        />
+        <div className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32 lg:px-10">
+          <section id="contact" aria-labelledby="contact-title" className="grid gap-14 lg:grid-cols-12">
+            <div className="relative lg:col-span-5 lg:pt-4">
+              <Reveal>
+                <Eyebrow className="text-ink/75">Let’s talk</Eyebrow>
+              </Reveal>
+              <Reveal as="h2" id="contact-title" delay={0.1} className="display mt-5 text-[clamp(3.6rem,9vw,7.5rem)]">
+                Ready to get <span className="text-white">found?</span>
+              </Reveal>
+              <Reveal delay={0.2} as="p" className="mt-8 max-w-sm text-lg leading-relaxed text-ink/80">
+                Tell me a little about your business. A few sentences is plenty. Every message gets a personal reply
+                from me with honest thoughts and clear next steps. No pressure, and no jargon.
+              </Reveal>
+              <ContactOptions />
+              <Sticker tone="ink" rotate={-6} delay={0.4} className="mt-10">
+                Usually live in about a week
+              </Sticker>
+            </div>
 
-      <div className="relative mx-auto max-w-7xl px-5 pt-28 pb-10 sm:px-8 sm:pt-40 lg:px-12">
-        <section id="contact" aria-labelledby="contact-title" className="grid gap-16 lg:grid-cols-12">
-          <div className="lg:col-span-5 lg:pt-6">
-            <Reveal>
-              <Eyebrow className="text-fog">Let’s talk</Eyebrow>
-            </Reveal>
             <Reveal
-              as="h2"
-              id="contact-title"
-              delay={0.1}
-              className="display mt-6 text-[clamp(2.6rem,6vw,5.2rem)]"
+              delay={0.25}
+              className="rounded-[2.25rem] bg-cream p-6 shadow-[0_40px_80px_-40px_rgb(23_19_15/0.6)] sm:p-10 lg:col-span-7 lg:col-start-6"
             >
-              Ready to get <span className="text-signal">found?</span>
+              <ContactForm />
             </Reveal>
-            <Reveal delay={0.2} as="p" className="mt-8 max-w-sm text-lg leading-relaxed text-cloud/70">
-              Tell me a little about your business. A few sentences is plenty. Every message gets a personal reply
-              from me with honest thoughts and clear next steps. No pressure, and no jargon.
-            </Reveal>
-            <ContactOptions />
-          </div>
+          </section>
+        </div>
+      </div>
 
-          <Reveal delay={0.25} className="rounded-3xl border border-white/8 bg-night-raised p-6 sm:p-10 lg:col-span-7 lg:col-start-6">
-            <ContactForm />
-          </Reveal>
-        </section>
-
-        <footer className="mt-28 flex flex-col gap-6 border-t border-cloud/10 pt-8 text-sm text-cloud/55 sm:mt-40 sm:flex-row sm:items-center sm:justify-between">
-          <p className="flex flex-wrap items-center gap-x-3 gap-y-1">
-            <Wordmark className="text-cloud" />
+      <footer className="bg-ink text-cream/70">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-10 text-sm sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
+          <p className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <Wordmark mono className="text-cream" />
             <span>
               © {new Date().getFullYear()} {brand.owner} · {brand.location}
             </span>
           </p>
           <div className="flex items-center gap-8">
-            <a href="/privacy/" className="transition-colors duration-500 hover:text-cloud">
+            <a href="/privacy/" className="transition-colors duration-300 hover:text-cream">
               Privacy
             </a>
-            <a href="#top" className="group inline-flex items-center gap-2 transition-colors duration-500 hover:text-cloud">
+            <a href="#top" className="group inline-flex items-center gap-2 transition-colors duration-300 hover:text-cream">
               Back to top
               <ArrowUp
                 aria-hidden="true"
-                className="size-3.5 transition-transform duration-700 ease-(--ease-calm) group-hover:-translate-y-1"
+                className="size-3.5 transition-transform duration-500 ease-(--ease-pop) group-hover:-translate-y-1"
               />
             </a>
           </div>
-        </footer>
-      </div>
-    </div>
+        </div>
+      </footer>
+    </>
   )
 }
 
@@ -80,9 +85,9 @@ function ContactOptions() {
           <a
             href={href}
             {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
-            className="group inline-flex items-center gap-3 font-medium transition-colors duration-300 hover:text-signal"
+            className="group inline-flex items-center gap-3 font-semibold"
           >
-            <span className="grid size-10 place-items-center rounded-full border border-white/12 text-signal transition-colors duration-300 group-hover:border-signal">
+            <span className="grid size-10 place-items-center rounded-full bg-ink text-cream transition-transform duration-300 ease-(--ease-pop) group-hover:scale-110">
               <Icon aria-hidden="true" className="size-4" />
             </span>
             {label}
@@ -164,10 +169,10 @@ function ContactForm() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.1, ease: calm }}
           >
-            <p className="display text-5xl">
-              Thank you. <span className="text-signal">Talk soon.</span>
+            <p className="display text-6xl">
+              Thank you. <span className="text-tangerine-deep">Talk soon.</span>
             </p>
-            <p className="mt-6 max-w-sm text-cloud/70">Your message is in, and you'll hear back from me personally.</p>
+            <p className="mt-6 max-w-sm text-ink-soft">Your message is in, and you'll hear back from me personally.</p>
           </m.div>
         ) : (
           <m.form
@@ -181,7 +186,7 @@ function ContactForm() {
             onSubmit={onSubmit}
             onChange={recheck}
             exit={{ opacity: 0, y: -12, transition: { duration: 0.5, ease: calm } }}
-            className="space-y-9"
+            className="space-y-7"
           >
             <input type="hidden" name="form-name" value="project" />
             <p className="hidden">
@@ -191,16 +196,16 @@ function ContactForm() {
             </p>
 
             <fieldset>
-              <legend className="mb-4 text-sm text-cloud/60">I'm interested in</legend>
+              <legend className="mb-3 text-sm font-semibold">I'm interested in</legend>
               <input type="hidden" name="project-type" value={type} />
               <div className="flex flex-wrap gap-2.5">
                 {projectTypes.map((option) => (
                   <label
                     key={option}
-                    className={`cursor-pointer rounded-full border px-4 py-2 text-sm transition-colors duration-500 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-signal ${
+                    className={`cursor-pointer rounded-full border px-4 py-2 text-sm transition-colors duration-500 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-ink ${
                       type === option
-                        ? 'border-cloud bg-cloud text-night'
-                        : 'border-cloud/20 text-cloud/80 hover:border-cloud/50'
+                        ? 'border-ink bg-ink font-semibold text-cream'
+                        : 'border-ink/15 bg-white hover:border-ink/40'
                     }`}
                   >
                     <input
@@ -217,7 +222,7 @@ function ContactForm() {
               </div>
             </fieldset>
 
-            <div className="grid gap-9 sm:grid-cols-2">
+            <div className="grid gap-7 sm:grid-cols-2">
               <Field label="Your name" name="name" autoComplete="name" error={errors.name} />
               <Field label="Email" name="email" type="email" autoComplete="email" error={errors.email} />
             </div>
@@ -228,10 +233,10 @@ function ContactForm() {
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="group inline-flex items-center gap-4 rounded-full bg-signal py-2 pr-2 pl-6 text-[0.95rem] font-semibold text-night transition-colors duration-300 hover:bg-signal-soft disabled:opacity-60"
+                className="group inline-flex items-center gap-3 rounded-full bg-ink py-1.5 pr-1.5 pl-6 text-[0.95rem] font-semibold text-cream transition-colors duration-300 hover:bg-[#2b241d] disabled:opacity-60"
               >
                 {status === 'sending' ? 'Sending…' : 'Send message'}
-                <span className="relative grid size-9 place-items-center overflow-hidden rounded-full bg-night/8">
+                <span className="relative grid size-9 place-items-center overflow-hidden rounded-full bg-tangerine text-ink">
                   <ArrowRight
                     aria-hidden="true"
                     className="size-4 transition-transform duration-700 ease-(--ease-calm) group-hover:translate-x-9"
@@ -243,7 +248,7 @@ function ContactForm() {
                 </span>
               </button>
               {status === 'error' && (
-                <p role="alert" className="text-sm text-signal">
+                <p role="alert" className="text-sm font-medium text-[#a32c06]">
                   That didn't go through. Please try again in a moment.
                 </p>
               )}
@@ -255,12 +260,12 @@ function ContactForm() {
   )
 }
 
-// Underline-only fields: the line warms on focus, and errors fade in beneath.
+// Soft rounded fields that turn white with an ink ring on focus; errors fade in beneath.
 function Field({ label, name, type = 'text', textarea = false, optional = false, error, ...props }) {
   const id = `field-${name}`
   const errorId = `${id}-error`
-  const base = `peer block w-full resize-none border-0 border-b bg-transparent px-0 pt-1 pb-3 text-lg text-cloud transition-colors duration-500 focus:ring-0 focus:outline-none ${
-    error ? 'border-signal/70' : 'border-cloud/20 focus:border-cloud'
+  const base = `block w-full resize-none rounded-2xl border-2 bg-blush px-4 py-3 text-base text-ink transition-colors duration-300 focus:bg-white focus:outline-none ${
+    error ? 'border-[#a32c06]/60' : 'border-transparent focus:border-ink'
   }`
   const shared = {
     id,
@@ -273,23 +278,17 @@ function Field({ label, name, type = 'text', textarea = false, optional = false,
   }
   return (
     <div>
-      <div className="relative">
-        <label htmlFor={id} className="mb-2 block text-sm text-cloud/60">
-          {label}
-          {optional && <span className="text-cloud/40"> (optional)</span>}
-        </label>
-        {textarea ? <textarea rows={3} {...shared} /> : <input type={type} {...shared} />}
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-signal transition-transform duration-700 ease-(--ease-calm) peer-focus:scale-x-100"
-        />
-      </div>
+      <label htmlFor={id} className="mb-2 block text-sm font-semibold">
+        {label}
+        {optional && <span className="font-normal text-ink-soft"> (optional)</span>}
+      </label>
+      {textarea ? <textarea rows={4} {...shared} /> : <input type={type} {...shared} />}
       <AnimatePresence initial={false}>
         {error && (
           <m.p
             key={error}
             id={errorId}
-            className="mt-2 text-sm text-signal"
+            className="mt-2 text-sm font-medium text-[#a32c06]"
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}

@@ -1,8 +1,8 @@
 import { m } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 
-// One easing curve for every reveal; slightly quicker than before to suit the bolder brand.
 export const calm = [0.16, 1, 0.3, 1]
+export const pop = [0.34, 1.4, 0.64, 1]
 
 export function Reveal({ as = 'div', delay = 0, y = 28, amount = 0.3, className, children, ...props }) {
   const Tag = m[as]
@@ -13,77 +13,116 @@ export function Reveal({ as = 'div', delay = 0, y = 28, amount = 0.3, className,
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount }}
-      transition={{ duration: 1, ease: calm, delay }}
+      transition={{ duration: 0.9, ease: calm, delay }}
     >
       {children}
     </Tag>
   )
 }
 
-// A small label above each section heading: an orange dot, then the name.
-export function Eyebrow({ children, className = '' }) {
+// A tilted label that pops in when it scrolls into view.
+export function Sticker({ children, rotate = -6, tone = 'ink', delay = 0, className = '' }) {
+  const tones = {
+    ink: 'bg-ink text-cream',
+    tangerine: 'bg-tangerine text-ink',
+    sunshine: 'bg-sunshine text-ink',
+    sky: 'bg-sky text-ink',
+    bubblegum: 'bg-bubblegum text-ink',
+    cream: 'bg-cream text-ink',
+  }
   return (
-    <p className={`flex items-center gap-2.5 text-xs font-semibold tracking-[0.2em] uppercase ${className}`}>
-      <span aria-hidden="true" className="size-1.5 rounded-full bg-signal" />
+    <m.span
+      className={`sticker ${tones[tone]} ${className}`}
+      initial={{ opacity: 0, scale: 0.6, rotate: 0 }}
+      whileInView={{ opacity: 1, scale: 1, rotate }}
+      viewport={{ once: true, amount: 1 }}
+      transition={{ duration: 0.7, ease: pop, delay }}
+    >
       {children}
-    </p>
+    </m.span>
   )
 }
 
-// The wordmark: "Design by Dae." with the period in signal orange.
-export function Wordmark({ className = '' }) {
+export function Eyebrow({ children, className = '' }) {
+  return <p className={`text-xs font-semibold tracking-[0.16em] uppercase ${className}`}>{children}</p>
+}
+
+// The wordmark: "design by dae." in condensed tangerine with an ink period, or all one color with `mono`.
+export function Wordmark({ mono = false, className = '' }) {
   return (
-    <span className={`font-display text-[1.15rem] font-extrabold tracking-[-0.04em] [font-stretch:112%] ${className}`}>
-      Design by Dae<span className="text-signal">.</span>
+    <span
+      className={`font-display text-[1.6rem] leading-none font-extrabold tracking-[-0.01em] [font-stretch:72%] ${mono ? '' : 'text-tangerine-deep'} ${className}`}
+    >
+      design by dae<span className={mono ? '' : 'text-ink'}>.</span>
     </span>
   )
 }
 
-// Pill button with an arrow that slides through on hover.
-export function Button({ href, children, variant = 'signal', className = '', ...props }) {
+// Pill button with a round arrow badge that spins a quarter turn on hover.
+export function Button({ href, children, variant = 'ink', className = '', ...props }) {
   const variants = {
-    signal: 'bg-signal text-night hover:bg-signal-soft',
-    light: 'bg-cloud text-night hover:bg-white',
-    ghost: 'border border-current/25 hover:border-current',
+    ink: ['bg-ink text-cream hover:bg-[#2b241d]', 'bg-tangerine text-ink'],
+    tangerine: ['bg-tangerine text-ink hover:bg-[#ff7240]', 'bg-ink text-cream'],
+    outline: ['border-2 border-ink text-ink hover:bg-ink hover:text-cream', 'bg-ink text-cream group-hover:bg-tangerine group-hover:text-ink'],
+    cream: ['bg-cream text-ink hover:bg-white', 'bg-tangerine text-ink'],
   }
-  const dot = variant === 'ghost' ? 'bg-current/10' : 'bg-night/10'
+  const [pill, badge] = variants[variant]
   return (
     <a
       href={href}
-      className={`group inline-flex items-center gap-4 rounded-full py-2 pr-2 pl-6 text-[0.95rem] font-semibold transition-colors duration-300 ${variants[variant]} ${className}`}
+      className={`group inline-flex items-center gap-3 rounded-full py-1.5 pr-1.5 pl-5 text-[0.95rem] font-semibold transition-colors duration-300 ${pill} ${className}`}
       {...props}
     >
       {children}
-      <span className={`relative grid size-9 place-items-center overflow-hidden rounded-full ${dot}`}>
-        <ArrowRight
+      <span className={`grid size-9 place-items-center rounded-full transition-colors duration-300 ${badge}`}>
+        <ArrowUpRight
           aria-hidden="true"
-          className="size-4 transition-transform duration-500 ease-(--ease-calm) group-hover:translate-x-9"
-        />
-        <ArrowRight
-          aria-hidden="true"
-          className="absolute size-4 -translate-x-9 transition-transform duration-500 ease-(--ease-calm) group-hover:translate-x-0"
+          className="size-4 transition-transform duration-500 ease-(--ease-pop) group-hover:rotate-45"
         />
       </span>
     </a>
   )
 }
 
-// Section intro used across the page: eyebrow, big headline, optional supporting line.
-export function SectionHead({ id, eyebrow, title, intro, tone = 'dark', className = '' }) {
-  const muted = tone === 'dark' ? 'text-fog' : 'text-smoke'
+// Section intro: small label, big condensed headline, optional supporting line.
+export function SectionHead({ id, eyebrow, title, intro, align = 'left', className = '' }) {
+  const center = align === 'center'
   return (
-    <div className={`max-w-4xl ${className}`}>
+    <div className={`${center ? 'mx-auto text-center' : ''} max-w-4xl ${className}`}>
       <Reveal>
-        <Eyebrow className={muted}>{eyebrow}</Eyebrow>
+        <Eyebrow className="text-ink-soft">{eyebrow}</Eyebrow>
       </Reveal>
-      <Reveal as="h2" id={id} delay={0.05} className="display mt-6 text-[clamp(2.4rem,6vw,5rem)]">
+      <Reveal as="h2" id={id} delay={0.05} className="display mt-5 text-[clamp(3rem,8vw,6.5rem)]">
         {title}
       </Reveal>
       {intro && (
-        <Reveal as="p" delay={0.12} className={`mt-6 max-w-xl text-lg leading-relaxed ${muted}`}>
+        <Reveal
+          as="p"
+          delay={0.12}
+          className={`mt-6 max-w-xl text-lg leading-relaxed text-ink-soft ${center ? 'mx-auto' : ''}`}
+        >
           {intro}
         </Reveal>
       )}
     </div>
+  )
+}
+
+// A thick hand-drawn loop, drawn on as it scrolls into view.
+export function Squiggle({ className = '', color = 'var(--color-tangerine)', d, viewBox = '0 0 400 400', width = 26 }) {
+  return (
+    <svg aria-hidden="true" viewBox={viewBox} fill="none" className={`pointer-events-none ${className}`}>
+      <m.path
+        d={d}
+        stroke={color}
+        strokeWidth={width}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        initial={{ pathLength: 0 }}
+        whileInView={{ pathLength: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 2, ease: calm }}
+      />
+    </svg>
   )
 }
